@@ -53,54 +53,109 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
   }
-  .menu-toggle .bars{
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  .menu-toggle .menu-label::before{
+    content: "MENU";
   }
-  .menu-toggle .bars span{
-    width: 22px; height: 1px;
+  .menu-toggle .menu-burger{
+    position: relative;
+    width: 22px;
+    height: 20px;
+  }
+  .menu-toggle .menu-burger .top,
+  .menu-toggle .menu-burger .bottom{
+    position: absolute;
+    left: 0;
+    width: 22px;
+    height: 1px;
     background: var(--white);
+    transition: transform 0.2s ease, top 0.2s ease;
   }
+  .menu-toggle .menu-burger .top{ top: 6px; }
+  .menu-toggle .menu-burger .bottom{ top: 13px; }
 
-  .overlay{
+  /* ---------- side menu ---------- */
+  .menu_background{
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.92);
+    z-index: 30;
+    display: none;
+  }
+  .show-menu .menu_background{ display: block; }
+
+  .side-menu{
+    position: fixed;
+    right: 0; top: 0; bottom: 0;
+    width: 100%;
     z-index: 40;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: rgba(0,0,0,0.5);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    padding: 0 20px;
+    transform: translate3d(calc(100% + 40px), 0, 0);
+    transition: transform 0.3s cubic-bezier(0.55, 0, 0.34, 1);
+  }
+  .show-menu .side-menu{ transform: translate3d(0, 0, 0); }
+
+  .side-menu .content{
+    position: relative;
+    height: 100%;
     opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
+    transform: translate3d(0, 12px, 0);
+    transition: transform 0.55s cubic-bezier(0.55, 0, 0.34, 1), opacity 0.55s cubic-bezier(0.55, 0, 0.34, 1);
   }
-  .overlay.open{
+  .show-menu .side-menu .content{
     opacity: 1;
-    pointer-events: auto;
+    transform: translate3d(0, 0, 0);
+    transition-delay: 0.2s;
   }
-  .overlay nav{
+  .side-menu nav{
+    position: absolute;
+    top: 0;
+    left: 20px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    height: 100%;
+    padding-top: 6rem;
+    gap: 1rem;
   }
-  .overlay nav a{
-    font-size: clamp(2.5rem, 7vw, 5rem);
-    font-weight: 300;
+  .side-menu nav a{
+    font-family: 'EB Garamond', serif;
+    text-transform: uppercase;
+    font-size: clamp(2rem, 4.5vw, 4rem);
+    line-height: 0.98;
     color: var(--white);
-    transition: color 0.25s ease;
+    transition: color 0.2s ease;
   }
-  .overlay nav a:hover{ color: var(--dim); }
-  .overlay .lang{
+  .side-menu nav a:hover{ color: #f80000; }
+  .side-menu .lang{
     position: absolute;
     bottom: 40px;
-    right: 40px;
+    right: 24px;
     font-family: 'EB Garamond', serif;
     font-style: italic;
     font-size: 0.95rem;
     color: var(--dim);
+  }
+
+  .show-menu .menu-toggle .menu-burger .top{
+    transform: rotate(45deg);
+    top: 10px;
+  }
+  .show-menu .menu-toggle .menu-burger .bottom{
+    transform: rotate(-45deg);
+    top: 10px;
+  }
+  .show-menu .menu-toggle .menu-label::before{ content: "CERRAR"; }
+
+  @media (min-width: 900px){
+    .side-menu{
+      width: 56.5%;
+      padding: 0 40px;
+    }
+    .side-menu nav{ left: 40px; }
+    .side-menu .lang{ right: 40px; }
   }
 
   main{ padding-top: 140px; }
@@ -115,18 +170,58 @@
     letter-spacing: -0.02em;
   }
 
+  /* ---------- about ---------- */
   .about{
-    padding: 40px 40px 80px;
-    max-width: 720px;
+    max-width: 860px;
     margin: 0 auto;
-    text-align: center;
+    padding: 40px 40px 80px;
   }
-  .about p{
-    font-size: 1.05rem;
-    line-height: 1.75;
-    font-weight: 300;
-    color: var(--white);
-    margin-bottom: 20px;
+  .about-block{
+    display: flex;
+    gap: 28px;
+    padding: 44px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .about-block:last-child{
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .about-block .num{
+    font-family: 'Inter', 'Impact', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #D6E6F2;
+    letter-spacing: 0.05em;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    line-height: 1.1;
+    flex-shrink: 0;
+  }
+  .about-content h2{
+    font-family: 'Inter', 'Impact', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #D6E6F2;
+    letter-spacing: 0.04em;
+    font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+    line-height: 1.05;
+    margin-bottom: 22px;
+  }
+  .about-content p{
+    color: #FFFFFF;
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .about-content .highlight{
+    color: #DDB043;
+    font-weight: bold;
+  }
+  .about-content .quote{
+    color: #DDB043;
+    font-style: italic;
+    font-family: 'EB Garamond', serif;
+    font-size: 1.2rem;
   }
 
   footer{
@@ -163,6 +258,7 @@
     header{ padding: 20px; }
     .page-head{ padding: 0 20px 0; }
     .about{ padding: 30px 20px 60px; }
+    .about-block{ flex-direction: column; gap: 12px; }
     footer{ padding: 40px 20px; }
   }
 </style>
@@ -171,14 +267,16 @@
 
 <header>
   <a href="index.html" class="logo">Dónde iremos a parar</a>
-  <button class="menu-toggle" id="menuToggle">
-    MENU
-    <span class="bars"><span></span><span></span></span>
+  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+    <span class="menu-label"></span>
+    <span class="menu-burger"><span class="top"></span><span class="bottom"></span></span>
   </button>
 </header>
 
-<div class="overlay" id="overlay">
-  <nav>
+<div class="menu_background" id="menuBackdrop"></div>
+<div class="side-menu" id="sideMenu">
+  <div class="content">
+    <nav>
     <a href="eventos-proximos.html">Eventos próximos</a>
     <a href="eventos-pasados.html">Eventos pasados</a>
     <a href="merch.html">Merch</a>
@@ -186,6 +284,7 @@
     <a href="nosotros.html">Sobre nosotros</a>
     <a href="contacto.html">Contacto</a>
   </nav>
+  </div>
 </div>
 
 <main>
@@ -193,15 +292,32 @@
     <h1>Nosotros</h1>
   </section>
   <section class="about">
-    <p>
-      Somos un equipo creativo con una mirada plástica y sensible.
-      Producimos y realizamos contenido audiovisual con un enfoque
-      simultáneo entre lo creativo y lo productivo, con un toque
-      clásico que se mantiene vigente en el tiempo.
-    </p>
-    <p>
-      Cultura y política. Buenos Aires, Argentina.
-    </p>
+    <article class="about-block">
+      <div class="num">01</div>
+      <div class="about-content">
+        <h2>Por qué Balderrama</h2>
+        <p>Balderrama es una histórica Peña fundada en 1953, en Salta, por los hermanos Juan, Daria y Celestino Balderrama. Punto de encuentro de músicos y poetas, fue conocida como "Templo mayor del folclore".</p>
+        <p>Conocimos la peña por la zamba "Balderrama" y su estribillo que expresa el miedo a perder ese espacio cultural.</p>
+        <p class="quote">"Lucero solito, brote del alba ¿dónde iremos a parar si se apaga Balderrama?"</p>
+        <p>En honor al encuentro, a la cultura, a quienes crearon esos espacios (como la familia Balderrama) y en tiempos donde el arte y lo colectivo esta en juego, decidimos nombrarnos de ésta forma.</p>
+      </div>
+    </article>
+    <article class="about-block">
+      <div class="num">02</div>
+      <div class="about-content">
+        <h2>Balderrama</h2>
+        <p>La cultura es política. Bajo esta idea (tan simple como compleja y desafiante) armamos este espacio que busca <span class="highlight">generar encuentros</span> en los que se debata y se propague el arte y nuestra cultura nacional. Creemos en la discusión política dentro del campo artístico para defender el rol de la cultura como elemento de transformación y de constitución de nuestra identidad.</p>
+      </div>
+    </article>
+    <article class="about-block">
+      <div class="num">03</div>
+      <div class="about-content">
+        <h2>¿Qué hacemos?</h2>
+        <p>Balderrama propone <span class="highlight">acercarnos a discutir cultura y política</span> en clave.</p>
+        <p>Conversaciones con artistas, Proyecciones, Música en vivo.</p>
+        <p>Debatir de dónde venimos y hacia dónde vamos. Difundir y conservar el arte nacional.</p>
+      </div>
+    </article>
   </section>
 </main>
 
@@ -212,6 +328,7 @@
     <a href="mailto:info@estudio.com">info@estudio.com</a>
   </div>
   <div class="col">
+    <a href="index.html">Inicio</a>
     <div class="head">EXPLORAR</div>
     <a href="eventos-proximos.html">Eventos próximos</a>
     <a href="eventos-pasados.html">Eventos pasados</a>
@@ -229,12 +346,12 @@
 
 <script>
   const toggle = document.getElementById('menuToggle');
-  const overlay = document.getElementById('overlay');
+  const body = document.body;
   toggle.addEventListener('click', () => {
-    overlay.classList.toggle('open');
+    body.classList.toggle('show-menu');
   });
-  overlay.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => overlay.classList.remove('open'));
+  document.getElementById('sideMenu').querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => body.classList.remove('show-menu'));
   });
 </script>
 
