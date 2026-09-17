@@ -4,9 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Merch — Balderrama</title>
+<link rel="stylesheet" href="tipografias.css">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Inter:wght@300;400;500&family=Anton&family=Archivo+Black&display=swap');
-
   :root{
     --black: #000000;
     --white: #f5f5f5;
@@ -19,151 +18,18 @@
   html, body{
     background: var(--black);
     color: var(--white);
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-weight: 300;
   }
 
   a{ color: inherit; text-decoration: none; }
-
-  header{
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 50;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 28px 40px;
-    mix-blend-mode: difference;
-  }
-
-  .logo{
-    font-family: 'EB Garamond', serif;
-    font-style: italic;
-    font-size: 1.4rem;
-    letter-spacing: 0.5px;
-  }
-
-  .menu-toggle{
-    background: none;
-    border: none;
-    color: var(--white);
-    font-family: 'Inter', sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .menu-toggle .menu-label::before{
-    content: "MENU";
-  }
-  .menu-toggle .menu-burger{
-    position: relative;
-    width: 22px;
-    height: 20px;
-  }
-  .menu-toggle .menu-burger .top,
-  .menu-toggle .menu-burger .bottom{
-    position: absolute;
-    left: 0;
-    width: 22px;
-    height: 1px;
-    background: var(--white);
-    transition: transform 0.2s ease, top 0.2s ease;
-  }
-  .menu-toggle .menu-burger .top{ top: 6px; }
-  .menu-toggle .menu-burger .bottom{ top: 13px; }
-
-  /* ---------- side menu ---------- */
-  .menu_background{
-    position: fixed;
-    inset: 0;
-    z-index: 30;
-    display: none;
-  }
-  .show-menu .menu_background{ display: block; }
-
-  .side-menu{
-    position: fixed;
-    right: 0; top: 0; bottom: 0;
-    width: 100%;
-    z-index: 40;
-    background: rgba(0,0,0,0.5);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    backdrop-filter: saturate(180%) blur(20px);
-    padding: 0 20px;
-    transform: translate3d(calc(100% + 40px), 0, 0);
-    transition: transform 0.3s cubic-bezier(0.55, 0, 0.34, 1);
-  }
-  .show-menu .side-menu{ transform: translate3d(0, 0, 0); }
-
-  .side-menu .content{
-    position: relative;
-    height: 100%;
-    opacity: 0;
-    transform: translate3d(0, 12px, 0);
-    transition: transform 0.55s cubic-bezier(0.55, 0, 0.34, 1), opacity 0.55s cubic-bezier(0.55, 0, 0.34, 1);
-  }
-  .show-menu .side-menu .content{
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-    transition-delay: 0.2s;
-  }
-  .side-menu nav{
-    position: absolute;
-    top: 0;
-    left: 20px;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    padding-top: 6rem;
-    gap: 1rem;
-  }
-  .side-menu nav a{
-    font-family: 'EB Garamond', serif;
-    text-transform: uppercase;
-    font-size: clamp(2rem, 4.5vw, 4rem);
-    line-height: 0.98;
-    color: var(--white);
-    transition: color 0.2s ease;
-  }
-  .side-menu nav a:hover{ color: #f80000; }
-  .side-menu .lang{
-    position: absolute;
-    bottom: 40px;
-    right: 24px;
-    font-family: 'EB Garamond', serif;
-    font-style: italic;
-    font-size: 0.95rem;
-    color: var(--dim);
-  }
-
-  .show-menu .menu-toggle .menu-burger .top{
-    transform: rotate(45deg);
-    top: 10px;
-  }
-  .show-menu .menu-toggle .menu-burger .bottom{
-    transform: rotate(-45deg);
-    top: 10px;
-  }
-  .show-menu .menu-toggle .menu-label::before{ content: "CERRAR"; }
-
-  @media (min-width: 900px){
-    .side-menu{
-      width: 56.5%;
-      padding: 0 40px;
-    }
-    .side-menu nav{ left: 40px; }
-    .side-menu .lang{ right: 40px; }
-  }
 
   main{ padding-top: 140px; }
   .page-head{
     padding: 0 40px 50px;
   }
   .page-head h1{
-    font-family: 'Anton', 'Archivo Black', sans-serif;
+    font-family: var(--font-title);
     text-transform: uppercase;
     font-size: clamp(2.5rem, 6vw, 5rem);
     line-height: 0.9;
@@ -210,75 +76,25 @@
   }
   .caption .title{ font-weight: 500; font-size: 1rem; }
   .caption .price{
-    font-family: 'EB Garamond', serif;
+    font-family: var(--font-body);
     font-style: italic;
     font-size: 0.9rem;
     color: var(--dim);
     margin-top: 2px;
   }
 
-  footer{
-    padding: 60px 40px 40px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 40px;
-    margin-top: 80px;
-  }
-  footer .col{
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    font-size: 0.9rem;
-    color: var(--dim);
-  }
-  footer .col .head{
-    font-size: 0.75rem;
-    letter-spacing: 1.5px;
-    color: var(--white);
-    margin-bottom: 8px;
-  }
-  footer a:hover{ color: var(--white); }
-  footer .copy{
-    width: 100%;
-    text-align: center;
-    margin-top: 40px;
-    font-size: 0.75rem;
-    color: #3a3a3a;
-  }
+  site-footer{ display: block; margin-top: 80px; }
 
   @media (max-width: 700px){
     .grid, .grid.wide{ grid-template-columns: 1fr; }
-    header{ padding: 20px; }
     .page-head{ padding: 0 20px 40px; }
-    footer{ padding: 40px 20px; }
   }
 </style>
 </head>
 <body>
 
-<header>
-  <a href="index.html" class="logo">Dónde iremos a parar</a>
-  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-    <span class="menu-label"></span>
-    <span class="menu-burger"><span class="top"></span><span class="bottom"></span></span>
-  </button>
-</header>
-
-<div class="menu_background" id="menuBackdrop"></div>
-<div class="side-menu" id="sideMenu">
-  <div class="content">
-    <nav>
-    <a href="eventos-proximos.html">Eventos próximos</a>
-    <a href="eventos-pasados.html">Eventos pasados</a>
-    <a href="merch.html">Merch</a>
-    <a href="contenido.html">Contenido</a>
-    <a href="nosotros.html">Sobre nosotros</a>
-    <a href="contacto.html">Contacto</a>
-  </nav>
-  </div>
-</div>
+<site-header href="index.html"></site-header>
+<site-menu></site-menu>
 
 <main>
   <section class="page-head">
@@ -317,39 +133,11 @@
   </section>
 </main>
 
-<footer>
-  <div class="col">
-    <div class="head">CULTURA Y POLÍTICA</div>
-    <span>Buenos Aires, Argentina</span>
-    <a href="mailto:info@estudio.com">info@estudio.com</a>
-  </div>
-  <div class="col">
-    <a href="index.html">Inicio</a>
-    <div class="head">EXPLORAR</div>
-    <a href="eventos-proximos.html">Eventos próximos</a>
-    <a href="eventos-pasados.html">Eventos pasados</a>
-    <a href="merch.html">Merch</a>
-    <a href="contenido.html">Contenido</a>
-    <a href="nosotros.html">Sobre nosotros</a>
-  </div>
-  <div class="col">
-    <div class="head">SEGUINOS</div>
-    <a href="https://www.instagram.com/culturabalderrama/" target="_blank" rel="noopener">Instagram</a>
-    <a href="#">Vimeo</a>
-  </div>
-  <div class="copy">Copyright © 2026 Dónde iremos a parar</div>
-</footer>
+<site-footer></site-footer>
 
-<script>
-  const toggle = document.getElementById('menuToggle');
-  const body = document.body;
-  toggle.addEventListener('click', () => {
-    body.classList.toggle('show-menu');
-  });
-  document.getElementById('sideMenu').querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => body.classList.remove('show-menu'));
-  });
-</script>
+<script src="components/site-header.js"></script>
+<script src="components/site-menu.js"></script>
+<script src="components/site-footer.js"></script>
 
 </body>
 </html>
