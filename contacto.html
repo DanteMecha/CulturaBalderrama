@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Contacto — Balderrama</title>
-<link rel="stylesheet" href="tipografias.css">
+<title></title>
+<link rel="stylesheet" href="texts/tipografias.css">
+<link rel="icon" type="image/jpeg" href="images/logo.jpg">
 <style>
   :root{
     --black: #000000;
@@ -56,24 +57,26 @@
   }
 </style>
 </head>
-<body>
+<body data-page="contacto">
 
 <site-header href="index.html"></site-header>
 <site-menu></site-menu>
 
 <main>
   <section class="page-head">
-    <h1>Contacto</h1>
+    <h1 data-text="pages.contacto.heading"></h1>
   </section>
   <section class="contact">
-    <a href="mailto:info@estudio.com">info@estudio.com</a>
-    <a href="https://www.instagram.com/culturabalderrama/" target="_blank" rel="noopener">@culturabalderrama</a>
-    <span style="color: var(--dim); font-size: 0.9rem; letter-spacing: 1.5px;">Buenos Aires, Argentina</span>
+    <a href="mailto:" data-text="shared.email" data-href="shared.mailtoEmail"></a>
+    <a href="#" data-text="shared.instagramHandle" data-href="shared.instagramUrl" target="_blank" rel="noopener"></a>
+    <span style="color: var(--dim); font-size: 0.9rem; letter-spacing: 1.5px;" data-text="shared.location"></span>
   </section>
 </main>
 
 <site-footer></site-footer>
 
+<script src="texts/texts.js"></script>
+<script src="texts/apply-texts.js"></script>
 <script src="components/site-header.js"></script>
 <script src="components/site-menu.js"></script>
 <script src="components/site-footer.js"></script>

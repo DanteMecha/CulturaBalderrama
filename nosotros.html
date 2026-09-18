@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sobre nosotros — Balderrama</title>
-<link rel="stylesheet" href="tipografias.css">
+<title></title>
+<link rel="stylesheet" href="texts/tipografias.css">
+<link rel="icon" type="image/jpeg" href="images/logo.jpg">
 <style>
   :root{
     --black: #000000;
@@ -62,7 +63,7 @@
     flex-shrink: 0;
   }
   .about-content h2{
-    font-family: var(--font-title);
+    font-family: var(--font-brand);
     font-weight: 900;
     text-transform: uppercase;
     color: #D6E6F2;
@@ -97,40 +98,38 @@
   }
 </style>
 </head>
-<body>
+<body data-page="nosotros">
 
 <site-header href="index.html"></site-header>
 <site-menu></site-menu>
 
 <main>
   <section class="page-head">
-    <h1>Nosotros</h1>
+    <h1 data-text="pages.nosotros.heading"></h1>
   </section>
   <section class="about">
     <article class="about-block">
-      <div class="num">01</div>
+      <div class="num" data-text="pages.nosotros.blocks.0.num"></div>
       <div class="about-content">
-        <h2>Por qué Balderrama</h2>
-        <p>Balderrama es una histórica Peña fundada en 1953, en Salta, por los hermanos Juan, Daria y Celestino Balderrama. Punto de encuentro de músicos y poetas, fue conocida como "Templo mayor del folclore".</p>
-        <p>Conocimos la peña por la zamba "Balderrama" y su estribillo que expresa el miedo a perder ese espacio cultural.</p>
-        <p class="quote">"Lucero solito, brote del alba ¿dónde iremos a parar si se apaga Balderrama?"</p>
-        <p>En honor al encuentro, a la cultura, a quienes crearon esos espacios (como la familia Balderrama) y en tiempos donde el arte y lo colectivo esta en juego, decidimos nombrarnos de ésta forma.</p>
+        <h2 data-text="pages.nosotros.blocks.0.heading"></h2>
+        <p data-text="pages.nosotros.blocks.0.content.0"></p>
+        <p data-text="pages.nosotros.blocks.0.content.1"></p>
+        <p class="quote" data-text="pages.nosotros.blocks.0.content.2"></p>
+        <p data-text="pages.nosotros.blocks.0.content.3"></p>
       </div>
     </article>
     <article class="about-block">
-      <div class="num">02</div>
+      <div class="num" data-text="pages.nosotros.blocks.1.num"></div>
       <div class="about-content">
-        <h2>Balderrama</h2>
-        <p>La cultura es política. Bajo esta idea (tan simple como compleja y desafiante) armamos este espacio que busca <span class="highlight">generar encuentros</span> en los que se debata y se propague el arte y nuestra cultura nacional. Creemos en la discusión política dentro del campo artístico para defender el rol de la cultura como elemento de transformación y de constitución de nuestra identidad.</p>
+        <h2 data-text="pages.nosotros.blocks.1.heading"></h2>
+        <p data-html="pages.nosotros.blocks.1.content.0"></p>
       </div>
     </article>
     <article class="about-block">
-      <div class="num">03</div>
+      <div class="num" data-text="pages.nosotros.blocks.2.num"></div>
       <div class="about-content">
-        <h2>¿Qué hacemos?</h2>
-        <p>Balderrama propone <span class="highlight">acercarnos a discutir cultura y política</span> en clave.</p>
-        <p>Conversaciones con artistas, Proyecciones, Música en vivo.</p>
-        <p>Debatir de dónde venimos y hacia dónde vamos. Difundir y conservar el arte nacional.</p>
+        <h2 data-text="pages.nosotros.blocks.2.heading"></h2>
+        <p data-html="pages.nosotros.blocks.2.content.0"></p>
       </div>
     </article>
   </section>
@@ -138,6 +137,8 @@
 
 <site-footer></site-footer>
 
+<script src="texts/texts.js"></script>
+<script src="texts/apply-texts.js"></script>
 <script src="components/site-header.js"></script>
 <script src="components/site-menu.js"></script>
 <script src="components/site-footer.js"></script>

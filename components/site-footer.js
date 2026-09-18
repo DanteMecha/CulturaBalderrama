@@ -1,6 +1,18 @@
 (function () {
   'use strict';
 
+  var TEXTS = window.TEXTS || {};
+  var SHARED = TEXTS.shared || {};
+  var FOOTER = TEXTS.footer || {};
+  var NAV = TEXTS.nav || {};
+
+  function navLinks() {
+    var all = [NAV.home].concat(NAV.items || []);
+    return all.map(function (item) {
+      return '<a href="' + item.href + '">' + item.label + '</a>';
+    }).join('\n    ');
+  }
+
   class SiteFooter extends HTMLElement {
     constructor() {
       super();
@@ -42,25 +54,20 @@
         '</style>',
         '<footer>',
         '  <div class="col">',
-        '    <div class="head">CULTURA Y POLÍTICA</div>',
-        '    <span>Buenos Aires, Argentina</span>',
-        '    <a href="mailto:info@estudio.com">info@estudio.com</a>',
+        '    <div class="head">' + FOOTER.culturaTitle + '</div>',
+        '    <span>' + SHARED.location + '</span>',
+        '    <a href="mailto:' + SHARED.email + '">' + SHARED.email + '</a>',
         '  </div>',
         '  <div class="col">',
-        '    <div class="head">EXPLORAR</div>',
-        '    <a href="index.html">Inicio</a>',
-        '    <a href="eventos-proximos.html">Eventos próximos</a>',
-        '    <a href="eventos-pasados.html">Eventos pasados</a>',
-        '    <a href="merch.html">Merch</a>',
-        '    <a href="contenido.html">Contenido</a>',
-        '    <a href="nosotros.html">Sobre nosotros</a>',
+        '    <div class="head">' + FOOTER.explorarTitle + '</div>',
+        '    ' + navLinks(),
         '  </div>',
         '  <div class="col">',
-        '    <div class="head">SEGUINOS</div>',
-        '    <a href="https://www.instagram.com/culturabalderrama/" target="_blank" rel="noopener">Instagram</a>',
-        '    <a href="#">Vimeo</a>',
+        '    <div class="head">' + FOOTER.seguinosTitle + '</div>',
+        '    <a href="' + SHARED.instagramUrl + '" target="_blank" rel="noopener">' + FOOTER.instagram + '</a>',
+        '    <a href="#">' + FOOTER.vimeo + '</a>',
         '  </div>',
-        '  <div class="copy">Copyright © 2026 Dónde iremos a parar</div>',
+        '  <div class="copy">' + SHARED.copyright + '</div>',
         '</footer>'
       ].join('\n');
     }

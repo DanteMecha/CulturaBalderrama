@@ -1,14 +1,9 @@
 (function () {
   'use strict';
 
-  const MENU_LINKS = [
-    ['eventos-proximos.html', 'Eventos próximos'],
-    ['eventos-pasados.html', 'Eventos pasados'],
-    ['merch.html', 'Merch'],
-    ['contenido.html', 'Contenido'],
-    ['nosotros.html', 'Sobre nosotros'],
-    ['contacto.html', 'Contacto']
-  ];
+  var TEXTS = window.TEXTS || {};
+  var NAV = TEXTS.nav || {};
+  var MENU_LINKS = NAV.items || [];
 
   function closeMenu() {
     document.dispatchEvent(new CustomEvent('menu:close'));
@@ -99,11 +94,11 @@
     connectedCallback() {
       const links = [];
       if (this.hasAttribute('home')) {
-        links.push(['index.html', 'Inicio']);
+        links.push(NAV.home);
       }
       links.push(...MENU_LINKS);
       this._nav.innerHTML = links
-        .map((item) => '<a href="' + item[0] + '">' + item[1] + '</a>')
+        .map((item) => '<a href="' + item.href + '">' + item.label + '</a>')
         .join('');
 
       this._onToggle = () => this.toggleAttribute('open');

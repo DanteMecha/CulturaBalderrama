@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Eventos próximos — Balderrama</title>
-<link rel="stylesheet" href="tipografias.css">
+<title></title>
+<link rel="stylesheet" href="texts/tipografias.css">
+<link rel="icon" type="image/jpeg" href="images/logo.jpg">
 <style>
   :root{
     --black: #000000;
@@ -91,36 +92,36 @@
   }
 </style>
 </head>
-<body>
+<body data-page="eventosProximos">
 
 <site-header href="index.html"></site-header>
 <site-menu></site-menu>
 
 <main>
   <section class="page-head">
-    <h1>Eventos próximos</h1>
-    <p>La agenda que se viene. Proyecciones, presentaciones y fechas por confirmar.</p>
+    <h1 data-text="pages.eventosProximos.heading"></h1>
+    <p data-text="pages.eventosProximos.description"></p>
   </section>
   <section class="grid" id="work">
     <div class="cell">
-      <img src="images/Flyer Lucrecia Martel.jpg" alt="">
+      <img src="images/Flyer_Lucrecia_Martel.jpg" alt="">
       <div class="caption">
-        <div class="title">Lucrecia Martel</div>
-        <div class="sub">Próximamente — Buenos Aires</div>
+        <div class="title" data-text="pages.eventosProximos.items.0.title"></div>
+        <div class="sub" data-text="shared.upcoming"></div>
       </div>
     </div>
     <div class="cell">
-      <img src="images/Flyer Marttein.jpg" alt="">
+      <img src="images/Flyer_Marttein.jpg" alt="">
       <div class="caption">
-        <div class="title">Marttein</div>
-        <div class="sub">Próximamente — Buenos Aires</div>
+        <div class="title" data-text="pages.eventosProximos.items.1.title"></div>
+        <div class="sub" data-text="shared.upcoming"></div>
       </div>
     </div>
     <div class="cell">
-      <img src="images/Banner 2.jpg" alt="">
+      <img src="images/Banner_2.jpg" alt="">
       <div class="caption">
-        <div class="title">Nuevo ciclo</div>
-        <div class="sub">Próximamente — Buenos Aires</div>
+        <div class="title" data-text="pages.eventosProximos.items.2.title"></div>
+        <div class="sub" data-text="shared.upcoming"></div>
       </div>
     </div>
   </section>
@@ -128,6 +129,8 @@
 
 <site-footer></site-footer>
 
+<script src="texts/texts.js"></script>
+<script src="texts/apply-texts.js"></script>
 <script src="components/site-header.js"></script>
 <script src="components/site-menu.js"></script>
 <script src="components/site-footer.js"></script>

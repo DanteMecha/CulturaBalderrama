@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Eventos pasados — Balderrama</title>
-<link rel="stylesheet" href="tipografias.css">
+<title></title>
+<link rel="stylesheet" href="texts/tipografias.css">
+<link rel="icon" type="image/jpeg" href="images/logo.jpg">
 <style>
   :root{
     --black: #000000;
@@ -176,38 +177,38 @@
   .modal .close:hover{ color: var(--dim); }
 </style>
 </head>
-<body>
+<body data-page="eventosPasados">
 
 <site-header href="index.html"></site-header>
 <site-menu></site-menu>
 
 <main>
   <section class="page-head">
-    <h1>Eventos pasados</h1>
-    <p>Lo que ya vivimos. Registro de las fechas, funciones y presentaciones que nos dejaron marca.</p>
+    <h1 data-text="pages.eventosPasados.heading"></h1>
+    <p data-text="pages.eventosPasados.description"></p>
   </section>
   <section class="grid" id="work">
     <div class="cell clickable" data-video="https://www.youtube.com/embed/8yaWGfB849k?start=1216&autoplay=1">
-      <img src="images/Flyer Lucrecia Martel.jpg" alt="">
+      <img src="images/Flyer_Lucrecia_Martel.jpg" alt="">
       <span class="play"></span>
       <div class="caption">
-        <div class="title">Charla con Lucrecia Martel</div>
-        <div class="sub">Buenos Aires — 2026</div>
+        <div class="title" data-text="pages.eventosPasados.items.0.title"></div>
+        <div class="sub" data-text="pages.eventosPasados.items.0.sub"></div>
       </div>
     </div>
     <div class="cell clickable" data-video="https://www.youtube.com/embed/8yaWGfB849k?start=1216&autoplay=1">
-      <img src="images/flyer Marttein 2.jpg" alt="">
+      <img src="images/flyer_Marttein_2.jpg" alt="">
       <span class="play"></span>
       <div class="caption">
-        <div class="title">Charla con Marttein</div>
-        <div class="sub">Buenos Aires — 2026</div>
+        <div class="title" data-text="pages.eventosPasados.items.1.title"></div>
+        <div class="sub" data-text="pages.eventosPasados.items.1.sub"></div>
       </div>
     </div>
   </section>
 </main>
 
 <div class="modal" id="videoModal">
-  <button class="close" id="videoClose">CERRAR</button>
+  <button class="close" id="videoClose" data-text="pages.eventosPasados.closeLabel"></button>
   <div class="frame">
     <div class="ratio">
       <iframe id="videoFrame" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -217,6 +218,8 @@
 
 <site-footer></site-footer>
 
+<script src="texts/texts.js"></script>
+<script src="texts/apply-texts.js"></script>
 <script src="components/site-header.js"></script>
 <script src="components/site-menu.js"></script>
 <script src="components/site-footer.js"></script>

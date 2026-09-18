@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Merch — Balderrama</title>
-<link rel="stylesheet" href="tipografias.css">
+<title></title>
+<link rel="stylesheet" href="texts/tipografias.css">
+<link rel="icon" type="image/jpeg" href="images/logo.jpg">
 <style>
   :root{
     --black: #000000;
@@ -91,43 +92,43 @@
   }
 </style>
 </head>
-<body>
+<body data-page="merch">
 
 <site-header href="index.html"></site-header>
 <site-menu></site-menu>
 
 <main>
   <section class="page-head">
-    <h1>Merch</h1>
-    <p>La tienda. Piezas editadas en ediciones cortas y numeradas.</p>
+    <h1 data-text="pages.merch.heading"></h1>
+    <p data-text="pages.merch.description"></p>
   </section>
   <section class="grid" id="work">
     <div class="cell">
-      <img src="images/Logo negro sobre blaco.jpg" alt="">
+      <img src="images/Logo_negro_sobre_blaco.jpg" alt="">
       <div class="caption">
-        <div class="title">Remera — Logo negro</div>
-        <div class="price">$ — Edición limitada</div>
+        <div class="title" data-text="pages.merch.items.0.title"></div>
+        <div class="price" data-text="shared.limitedEdition"></div>
       </div>
     </div>
     <div class="cell">
-      <img src="images/Logo celeste sobre blanco.jpg" alt="">
+      <img src="images/Logo_celeste_sobre_blanco.jpg" alt="">
       <div class="caption">
-        <div class="title">Remera — Logo celeste</div>
-        <div class="price">$ — Edición limitada</div>
+        <div class="title" data-text="pages.merch.items.1.title"></div>
+        <div class="price" data-text="shared.limitedEdition"></div>
       </div>
     </div>
     <div class="cell">
-      <img src="images/Logo largo celeste sobre blanco.jpg" alt="">
+      <img src="images/Logo_largo_celeste_sobre_blanco.jpg" alt="">
       <div class="caption">
-        <div class="title">Buzo — Logo largo</div>
-        <div class="price">$ — Edición limitada</div>
+        <div class="title" data-text="pages.merch.items.2.title"></div>
+        <div class="price" data-text="shared.limitedEdition"></div>
       </div>
     </div>
     <div class="cell">
-      <img src="images/Logo largo negro sobre blanco.jpg" alt="">
+      <img src="images/Logo_largo_negro_sobre_blanco.jpg" alt="">
       <div class="caption">
-        <div class="title">Tote — Logo largo</div>
-        <div class="price">$ — Edición limitada</div>
+        <div class="title" data-text="pages.merch.items.3.title"></div>
+        <div class="price" data-text="shared.limitedEdition"></div>
       </div>
     </div>
   </section>
@@ -135,6 +136,8 @@
 
 <site-footer></site-footer>
 
+<script src="texts/texts.js"></script>
+<script src="texts/apply-texts.js"></script>
 <script src="components/site-header.js"></script>
 <script src="components/site-menu.js"></script>
 <script src="components/site-footer.js"></script>

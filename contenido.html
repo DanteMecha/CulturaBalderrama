@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Contenido — Balderrama</title>
-<link rel="stylesheet" href="tipografias.css">
+<title></title>
+<link rel="stylesheet" href="texts/tipografias.css">
+<link rel="icon" type="image/jpeg" href="images/logo.jpg">
 <style>
   :root{
     --black: #000000;
@@ -91,64 +92,64 @@
   }
 </style>
 </head>
-<body>
+<body data-page="contenido">
 
 <site-header href="index.html"></site-header>
 <site-menu></site-menu>
 
 <main>
   <section class="page-head">
-    <h1>Contenido</h1>
-    <p>Producción y realización audiovisual. Una mirada plástica y sensible sobre lo que creamos.</p>
+    <h1 data-text="pages.contenido.heading"></h1>
+    <p data-text="pages.contenido.description"></p>
   </section>
   <section class="grid wide" id="work">
     <div class="cell">
-      <img src="images/contenido Lucrecia Martel 1.jpg" alt="">
+      <img src="images/contenido_Lucrecia_Martel_1.jpg" alt="">
       <div class="caption">
-        <div class="title">Lucrecia Martel</div>
-        <div class="sub">Serie — 2026</div>
+        <div class="title" data-text="pages.contenido.items.0.title"></div>
+        <div class="sub" data-text="pages.contenido.items.0.sub"></div>
       </div>
     </div>
     <div class="cell">
-      <img src="images/contenido Lucrecia Martel 2.jpg" alt="">
+      <img src="images/contenido_Lucrecia_Martel_2.jpg" alt="">
       <div class="caption">
-        <div class="title">Lucrecia Martel</div>
-        <div class="sub">Detrás de escena — 2026</div>
+        <div class="title" data-text="pages.contenido.items.1.title"></div>
+        <div class="sub" data-text="pages.contenido.items.1.sub"></div>
       </div>
     </div>
     <div class="cell">
-      <img src="images/contenido Lucrecia Martel 3.jpg" alt="">
+      <img src="images/contenido_Lucrecia_Martel_3.jpg" alt="">
       <div class="caption">
-        <div class="title">Lucrecia Martel</div>
-        <div class="sub">Producción — 2026</div>
+        <div class="title" data-text="pages.contenido.items.2.title"></div>
+        <div class="sub" data-text="pages.contenido.items.2.sub"></div>
       </div>
     </div>
     <div class="cell">
-      <img src="images/contenido Marttein 1.jpg" alt="">
+      <img src="images/contenido_Marttein_1.jpg" alt="">
       <div class="caption">
-        <div class="title">Marttein</div>
-        <div class="sub">Serie — 2026</div>
+        <div class="title" data-text="pages.contenido.items.3.title"></div>
+        <div class="sub" data-text="pages.contenido.items.3.sub"></div>
       </div>
     </div>
     <div class="cell">
-      <img src="images/contenido Marttein 2.jpg" alt="">
+      <img src="images/contenido_Marttein_2.jpg" alt="">
       <div class="caption">
-        <div class="title">Marttein</div>
-        <div class="sub">Detrás de escena — 2026</div>
+        <div class="title" data-text="pages.contenido.items.4.title"></div>
+        <div class="sub" data-text="pages.contenido.items.4.sub"></div>
       </div>
     </div>
     <div class="cell">
-      <img src="images/contenido Marttein 3.jpg" alt="">
+      <img src="images/contenido_Marttein_3.jpg" alt="">
       <div class="caption">
-        <div class="title">Marttein</div>
-        <div class="sub">Producción — 2026</div>
+        <div class="title" data-text="pages.contenido.items.5.title"></div>
+        <div class="sub" data-text="pages.contenido.items.5.sub"></div>
       </div>
     </div>
     <div class="cell">
-      <img src="images/contenido Marttein 4.jpg" alt="">
+      <img src="images/contenido_Marttein_4.jpg" alt="">
       <div class="caption">
-        <div class="title">Marttein</div>
-        <div class="sub">Producción — 2026</div>
+        <div class="title" data-text="pages.contenido.items.6.title"></div>
+        <div class="sub" data-text="pages.contenido.items.6.sub"></div>
       </div>
     </div>
   </section>
@@ -156,6 +157,8 @@
 
 <site-footer></site-footer>
 
+<script src="texts/texts.js"></script>
+<script src="texts/apply-texts.js"></script>
 <script src="components/site-header.js"></script>
 <script src="components/site-menu.js"></script>
 <script src="components/site-footer.js"></script>

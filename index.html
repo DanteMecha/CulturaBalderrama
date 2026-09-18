@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Estudio</title>
-<link rel="stylesheet" href="tipografias.css">
+<title></title>
+<link rel="stylesheet" href="texts/tipografias.css">
+<link rel="icon" type="image/jpeg" href="images/logo.jpg">
 <style>
   :root{
     --black: #000000;
@@ -48,13 +49,18 @@
   /* ---------- logo / h1 ---------- */
   .logo-hero{
     position: relative;
-    font-family: var(--font-title);
+    color: #B3D4FF;
+    font-family: var(--font-brand);
     text-transform: uppercase;
-    font-size: clamp(5rem, 12vw, 10rem);
+    font-size: clamp(8vw, 8vw, 8vw);
     line-height: 0.9;
     letter-spacing: -0.02em;
     text-align: left;
     user-select: none;
+  }
+  .logo-hero.pinned{
+    position: fixed;
+    z-index: 20;
   }
 
   /* ---------- projects grid ---------- */
@@ -151,38 +157,90 @@
   }
 </style>
 </head>
-<body>
+<body data-page="home">
 
 <site-header href="#"></site-header>
 <site-menu home></site-menu>
 
 <section class="hero">
   <div class="hero-bg"></div>
-  <h1 class="logo-hero">BALDERRAMA</h1>
+  <h1 class="logo-hero" data-text="pages.home.heroTitle"></h1>
 </section>
 
 <section class="grid" id="work">
   <div class="cell banner1">
-    <img src="images/Banner 1.jpeg" alt="">
+    <img src="images/Banner_1.jpeg" alt="">
   </div>
 </section>
 
 <section class="about" id="about">
-  <h2>Nosotros</h2>
-  <p>
-    La cultura es política. Bajo esta idea (tan simple como compleja y desafiante)
-    armamos este espacio que busca generar encuentros en los que se debata y se
-    propague el arte y nuestra cultura nacional. Creemos en la discusión política
-    dentro del campo artístico para defender el rol de la cultura como elemento
-    de transformación y de constitución de nuestra identidad.
-  </p>
+  <h2 data-text="pages.home.aboutTitle"></h2>
+  <p data-text="pages.home.aboutText"></p>
 </section>
 
 <site-footer></site-footer>
 
+<script src="texts/texts.js"></script>
+<script src="texts/apply-texts.js"></script>
 <script src="components/site-header.js"></script>
 <script src="components/site-menu.js"></script>
 <script src="components/site-footer.js"></script>
+
+<script>
+(function () {
+  'use strict';
+
+  var logo = document.querySelector('.logo-hero');
+  if (!logo) return;
+
+  var header = document.querySelector('site-header');
+  var pinned = false;
+  var startTop = null;
+  var topOffset = header ? header.getBoundingClientRect().bottom : 80;
+
+  function measure() {
+    if (pinned) return;
+    startTop = logo.offsetTop;
+    if (startTop == null || startTop <= 0) return;
+    topOffset = header ? header.getBoundingClientRect().bottom : 80;
+    var left = getComputedStyle(logo.parentElement).paddingLeft;
+    logo.dataset.left = left;
+  }
+
+  function update() {
+    if (startTop == null) measure();
+    if (startTop == null) return;
+    var pinFrom = startTop - topOffset;
+    if (window.scrollY >= pinFrom) {
+      if (!pinned) {
+        logo.classList.add('pinned');
+        logo.style.top = topOffset + 'px';
+        logo.style.left = logo.dataset.left;
+        pinned = true;
+      }
+    } else if (pinned) {
+      logo.classList.remove('pinned');
+      logo.style.cssText = '';
+      pinned = false;
+      startTop = null;
+      measure();
+    }
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', function () {
+    startTop = null;
+    update();
+  });
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () {
+      startTop = null;
+      update();
+    });
+  }
+  update();
+})();
+</script>
 
 </body>
 </html>
