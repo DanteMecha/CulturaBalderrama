@@ -3,10 +3,7 @@
 /* Tipografías del sitio (AGENTS.md):
    - Anton: títulos y elementos del menú
    - Inter: todo lo demás
-   - Climate Crisis: marca/brand. Variable font con un único eje YEAR (1979–2050).
-     Licencia: SIL OFL 1.1 (ver images/OFL.txt).
-     Uso: font-family: var(--font-brand);
-          font-variation-settings: 'YEAR' var(--brand-year);
+   - Climate Crisis: marca/brand (variable font, axis: YEAR)
    Las fuentes se definen únicamente en este archivo; el resto del sitio lo importa
    y usa las variables --font-title / --font-body / --font-brand. */
 
@@ -14,7 +11,4 @@
   --font-title: 'Anton', 'Arial Black', sans-serif;
   --font-body: 'Inter', 'Arial', sans-serif;
   --font-brand: 'Climate Crisis', sans-serif;
-
-  /* Climate Crisis — eje variable YEAR: rango 1979–2050 (default 2000). */
-  --brand-year: 2000;
 }

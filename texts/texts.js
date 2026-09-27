@@ -11,7 +11,6 @@
       instagramHandle: '@culturabalderrama',
       instagramUrl: 'https://www.instagram.com/culturabalderrama/',
       copyright: 'Copyright © 2026 Dónde iremos a parar',
-      upcoming: 'Próximamente — Buenos Aires',
       limitedEdition: '$ — Edición limitada'
     },
 
@@ -24,8 +23,7 @@
     nav: {
       home: { href: 'index.html', label: 'Inicio' },
       items: [
-        { href: 'eventos-proximos.html', label: 'Eventos próximos' },
-        { href: 'eventos-pasados.html', label: 'Eventos pasados' },
+        { href: 'eventos.html', label: 'Eventos' },
         { href: 'merch.html', label: 'Merch' },
         // { href: 'contenido.html', label: 'Contenido' },
         { href: 'nosotros.html', label: 'Sobre nosotros' },
@@ -100,25 +98,14 @@
         ]
       },
 
-      eventosPasados: {
-        title: 'Eventos pasados — Balderrama',
-        heading: 'Eventos pasados',
+      eventos: {
+        title: 'Eventos — Balderrama',
+        heading: 'Eventos',
         description: 'Lo que ya vivimos. Registro de las fechas, funciones y presentaciones que nos dejaron marca.',
         closeLabel: 'CERRAR',
         items: [
           { title: 'Charla con Lucrecia Martel', sub: 'Buenos Aires — 2026' },
           { title: 'Charla con Marttein', sub: 'Buenos Aires — 2026' }
-        ]
-      },
-
-      eventosProximos: {
-        title: 'Eventos próximos — Balderrama',
-        heading: 'Eventos próximos',
-        description: 'La agenda que se viene. Proyecciones, presentaciones y fechas por confirmar.',
-        items: [
-          { title: 'Lucrecia Martel' },
-          { title: 'Marttein' },
-          { title: 'Nuevo ciclo' }
         ]
       },
 

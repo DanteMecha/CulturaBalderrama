@@ -92,12 +92,7 @@
     }
 
     connectedCallback() {
-      const links = [];
-      if (this.hasAttribute('home')) {
-        links.push(NAV.home);
-      }
-      links.push(...MENU_LINKS);
-      this._nav.innerHTML = links
+      this._nav.innerHTML = [NAV.home].concat(MENU_LINKS)
         .map((item) => '<a href="' + item.href + '">' + item.label + '</a>')
         .join('');
 
