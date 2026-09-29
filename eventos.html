@@ -9,9 +9,10 @@
 <style>
   :root{
     --black: #000000;
-    --white: #f5f5f5;
+    --white: #f2f1ed;
+    --gold: #e8ca22;
+    --celeste: #9EC5EC;
     --dim: #6b6b6b;
-    --gutter: 2px;
   }
 
   *{ box-sizing: border-box; margin:0; padding:0; }
@@ -24,107 +25,147 @@
   }
 
   a{ color: inherit; text-decoration: none; }
+  em{ font-style: normal; font-weight: 500; color: var(--white); }
 
-  main{ padding-top: 140px; }
-  .page-head{
-    padding: 0 40px 50px;
-  }
+  main{ padding-top: 148px; }
+
+  .page-head{ padding: 0 40px; }
   .page-head h1{
     font-family: var(--font-title);
     text-transform: uppercase;
     font-size: clamp(2.5rem, 6vw, 5rem);
     line-height: 0.9;
     letter-spacing: -0.02em;
-  }
-  .page-head p{
-    margin-top: 18px;
-    max-width: 480px;
-    color: var(--dim);
-    line-height: 1.7;
+    color: var(--white);
   }
 
-  .grid{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--gutter);
-  }
-  .grid.wide{
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .cell{
+  .slide{
     position: relative;
-    aspect-ratio: 16/9;
-    overflow: hidden;
-    background: #0a0a0a;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    align-items: stretch;
+    margin-top: 90px;
   }
-  .cell.clickable{
-    cursor: pointer;
-    aspect-ratio: 4/5;
-  }
-  .cell.clickable .play{
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
-    width: 64px; height: 64px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.6);
-    background: rgba(0,0,0,0.35);
+
+  .slide-text{ padding: 48px 48px 56px; }
+
+  .kicker{
     display: flex;
+    align-items: baseline;
+    gap: 16px;
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--celeste);
+  }
+  .kicker .place{ color: var(--dim); letter-spacing: 1.5px; }
+
+  .slide-text h2{
+    font-family: var(--font-title);
+    text-transform: uppercase;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-top: 18px;
+  }
+  .lede{
+    max-width: 46ch;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: clamp(1rem, 1.5vw, 1.18rem);
+    line-height: 1.65;
+    color: var(--white);
+  }
+  .body{
+    max-width: 52ch;
+    margin-top: 20px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: rgba(242,241,237,0.72);
+  }
+  .quote{
+    max-width: 40ch;
+    margin-top: 34px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    color: var(--gold);
+    font-size: 1.05rem;
+    line-height: 1.55;
+  }
+
+  .watch{
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    opacity: 0;
-    transition: background 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+    gap: 12px;
+    margin-top: 38px;
+    padding: 14px 22px;
+    border: 1px solid var(--celeste);
+    background: none;
+    color: var(--celeste);
+    font-family: var(--font-title);
+    text-transform: uppercase;
+    font-size: 0.82rem;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease;
   }
-  .cell.clickable:hover .play{
-    background: var(--white);
-    transform: translate(-50%,-50%) scale(1.08);
-    opacity: 1;
-  }
-  .cell.clickable .play::after{
-    content: '';
+  .watch:hover{ background: var(--celeste); color: #000; }
+  .watch .glyph{
     width: 0; height: 0;
     border-style: solid;
-    border-width: 9px 0 9px 15px;
-    border-color: transparent transparent transparent var(--white);
-    margin-left: 3px;
-    transition: border-color 0.3s ease;
+    border-width: 6px 0 6px 10px;
+    border-color: transparent transparent transparent currentColor;
   }
-  .cell.clickable:hover .play::after{
-    border-color: transparent transparent transparent #000;
+
+  .slide-photo{
+    position: relative;
+    align-self: stretch;
+    background: #050505;
+    overflow: hidden;
+    min-height: 460px;
   }
-  .cell img{
+  .slide-photo .main{
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
-    filter: grayscale(15%);
-    transition: transform 0.6s ease, filter 0.6s ease;
+    filter: grayscale(1) contrast(1.18) brightness(0.94);
   }
-  .cell:hover img{
-    transform: scale(1.03);
-    filter: grayscale(0%);
-  }
-  .cell .caption{
+  .slide-photo::after{
+    content: '';
     position: absolute;
-    left: 0; right: 0; bottom: 0;
-    padding: 20px 22px;
-    background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 70%);
-  }
-  .caption .title{ font-weight: 500; font-size: 1rem; }
-  .caption .sub{
-    font-family: var(--font-body);
-    font-style: italic;
-    font-size: 0.9rem;
-    color: var(--dim);
-    margin-top: 2px;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.14;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  site-footer{ display: block; margin-top: 80px; }
+  .slide-num{
+    position: absolute;
+    right: 40px;
+    bottom: 32px;
+    z-index: 3;
+    font-family: var(--font-title);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    color: var(--celeste);
+  }
+
+  .slide[data-side="left"] .slide-photo{ order: -1; }
+
+  site-footer{ display: block; margin-top: 40px; }
 
   @media (max-width: 700px){
-    .grid, .grid.wide{ grid-template-columns: 1fr; }
-    .page-head{ padding: 0 20px 40px; }
+    .page-head{ padding: 0 20px; }
+    .slide{ grid-template-columns: 1fr; }
+    .slide[data-side="left"] .slide-photo{ order: 0; }
+    .slide-photo{ min-height: 0; aspect-ratio: 4/3; }
+    .slide-text{ padding: 32px 20px 84px; }
+    .slide-num{ right: 20px; bottom: 22px; }
   }
 
   .modal{
@@ -167,7 +208,7 @@
     right: 0;
     background: none;
     border: none;
-    color: var(--white);
+    color: var(--celeste);
     font-family: var(--font-body);
     font-size: 0.8rem;
     letter-spacing: 2px;
@@ -185,26 +226,49 @@
 <main>
   <section class="page-head">
     <h1 data-text="pages.eventos.heading"></h1>
-    <p data-text="pages.eventos.description"></p>
   </section>
-  <section class="grid" id="work">
-    <div class="cell clickable" id="lucrecia-martel" data-video="https://www.youtube.com/embed/8yaWGfB849k?start=1216&autoplay=1">
-      <img src="images/Flyer_Lucrecia_Martel.jpg" alt="">
-      <span class="play"></span>
-      <div class="caption">
-        <div class="title" data-text="pages.eventos.items.0.title"></div>
-        <div class="sub" data-text="pages.eventos.items.0.sub"></div>
+
+  <article class="slide" data-side="left" id="lucrecia-martel" data-video="https://www.youtube.com/watch?v=9FVElmcy_HE">
+    <div class="slide-text">
+      <div class="kicker">
+        <span data-text="pages.eventos.sections.0.kicker"></span>
+        <span class="place" data-text="pages.eventos.sections.0.meta"></span>
       </div>
+      <h2 data-text="pages.eventos.sections.0.title"></h2>
+      <p class="lede" data-html="pages.eventos.sections.0.lede"></p>
+      <p class="body" data-html="pages.eventos.sections.0.body"></p>
+      <blockquote class="quote" data-text="pages.eventos.sections.0.quote"></blockquote>
+      <button class="watch" type="button">
+        <span class="glyph"></span>
+        <span data-text="pages.eventos.sections.0.watchLabel"></span>
+      </button>
     </div>
-    <div class="cell clickable" id="marttein" data-video="https://www.youtube.com/embed/8yaWGfB849k?start=1216&autoplay=1">
-      <img src="images/flyer_Marttein_2.jpg" alt="">
-      <span class="play"></span>
-      <div class="caption">
-        <div class="title" data-text="pages.eventos.items.1.title"></div>
-        <div class="sub" data-text="pages.eventos.items.1.sub"></div>
+    <div class="slide-photo">
+      <img class="main" src="images/Contenido_Lucrecia_2.jpeg" alt="Fotograma de la charla con Lucrecia Martel">
+    </div>
+    <span class="slide-num" data-text="pages.eventos.sections.0.number"></span>
+  </article>
+
+  <article class="slide" data-side="right" id="marttein" data-video="https://www.youtube.com/embed/8yaWGfB849k?start=1216&autoplay=1">
+    <div class="slide-text">
+      <div class="kicker">
+        <span data-text="pages.eventos.sections.1.kicker"></span>
+        <span class="place" data-text="pages.eventos.sections.1.meta"></span>
       </div>
+      <h2 data-text="pages.eventos.sections.1.title"></h2>
+      <p class="lede" data-html="pages.eventos.sections.1.lede"></p>
+      <p class="body" data-html="pages.eventos.sections.1.body"></p>
+      <blockquote class="quote" data-text="pages.eventos.sections.1.quote"></blockquote>
+      <button class="watch" type="button">
+        <span class="glyph"></span>
+        <span data-text="pages.eventos.sections.1.watchLabel"></span>
+      </button>
     </div>
-  </section>
+    <div class="slide-photo">
+      <img class="main" src="images/Contenido_Marttein_4.jpeg" alt="Fotograma de la charla con Marttein">
+    </div>
+    <span class="slide-num" data-text="pages.eventos.sections.1.number"></span>
+  </article>
 </main>
 
 <div class="modal" id="videoModal">
@@ -227,9 +291,9 @@
   const modal = document.getElementById('videoModal');
   const frame = document.getElementById('videoFrame');
   const closeBtn = document.getElementById('videoClose');
-  document.querySelectorAll('.cell.clickable').forEach(cell => {
-    cell.addEventListener('click', () => {
-      frame.src = cell.dataset.video;
+  document.querySelectorAll('.slide').forEach(slide => {
+    slide.querySelector('.watch').addEventListener('click', () => {
+      frame.src = slide.dataset.video;
       modal.classList.add('open');
     });
   });

@@ -24,10 +24,12 @@
         '  .logo{',
         '    display: inline-block;',
         '    padding: 20px 0 0 30px;',
-        '    font-family: var(--font-title);',
-'    font-size: 1.3rem;',
-'    letter-spacing: 0.5px;',
-        '    color: var(--white);',
+        '    font-family: var(--font-brand);',
+        '    text-transform: uppercase;',
+        '    font-size: 2.6rem;',
+        '    line-height: 0.9;',
+        '    letter-spacing: -0.02em;',
+        '    color: #B3D4FF;',
         '    text-decoration: none;',
         '  }',
         '  .menu-toggle{',
@@ -77,7 +79,7 @@
     }
 
     connectedCallback() {
-      this._logo.textContent = SHARED.slogan || '';
+      this._logo.textContent = SHARED.brandLogo || SHARED.projectName || '';
       this._logo.setAttribute('href', this.getAttribute('href') || 'index.html');
       this._onToggle = () => document.dispatchEvent(new CustomEvent('menu:toggle'));
       this._onOpen = () => this.toggleAttribute('open');

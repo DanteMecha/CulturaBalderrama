@@ -4,6 +4,7 @@
   window.TEXTS = {
     shared: {
       projectName: 'Balderrama',
+      brandLogo: 'BALDERRAMA',
       slogan: 'Dónde iremos a parar',
       location: 'Buenos Aires, Argentina',
       email: 'info@estudio.com',
@@ -25,7 +26,7 @@
       items: [
         { href: 'eventos.html', label: 'Eventos' },
         { href: 'merch.html', label: 'Merch' },
-        // { href: 'contenido.html', label: 'Contenido' },
+        { href: 'contenido.html', label: 'Contenido' },
         { href: 'nosotros.html', label: 'Sobre nosotros' },
         { href: 'contacto.html', label: 'Contacto' }
       ]
@@ -36,7 +37,12 @@
       explorarTitle: 'EXPLORAR',
       seguinosTitle: 'SEGUINOS',
       instagram: 'Instagram',
-      vimeo: 'Vimeo'
+      vimeo: 'Vimeo',
+      stayInLoopTitle: 'STAY IN THE LOOP',
+      emailPlaceholder: 'Ingresá tu email',
+      submitLabel: 'Enviar',
+      subscribeSuccess: 'Gracias por suscribirte.',
+      subscribeError: 'Ingresá un email válido.'
     },
 
     pages: {
@@ -86,33 +92,63 @@
       contenido: {
         title: 'Contenido — Balderrama',
         heading: 'Contenido',
-        description: 'Producción y realización audiovisual. Una mirada plástica y sensible sobre lo que creamos.',
         items: [
           { title: 'Lucrecia Martel', sub: 'Serie — 2026' },
           { title: 'Lucrecia Martel', sub: 'Detrás de escena — 2026' },
           { title: 'Lucrecia Martel', sub: 'Producción — 2026' },
+          { title: 'Lucrecia Martel', sub: 'Detrás de escena — 2026' },
+          { title: 'Lucrecia Martel', sub: 'Producción — 2026' },
+          { title: 'Lucrecia Martel', sub: 'Serie — 2026' },
+          { title: 'Lucrecia Martel', sub: 'Producción — 2026' },
+          { title: 'Lucrecia Martel', sub: 'Detrás de escena — 2026' },
           { title: 'Marttein', sub: 'Serie — 2026' },
           { title: 'Marttein', sub: 'Detrás de escena — 2026' },
           { title: 'Marttein', sub: 'Producción — 2026' },
-          { title: 'Marttein', sub: 'Producción — 2026' }
+          { title: 'Marttein', sub: 'Serie — 2026' },
+          { title: 'Marttein', sub: 'Detrás de escena — 2026' },
+          { title: 'Marttein', sub: 'Producción — 2026' },
+          { title: 'Marttein', sub: 'Serie — 2026' },
+          { title: 'Marttein', sub: 'Detrás de escena — 2026' },
+          { title: 'Marttein', sub: 'Producción — 2026' },
+          { title: 'Marttein', sub: 'Serie — 2026' }
         ]
       },
 
       eventos: {
         title: 'Eventos — Balderrama',
         heading: 'Eventos',
-        description: 'Lo que ya vivimos. Registro de las fechas, funciones y presentaciones que nos dejaron marca.',
         closeLabel: 'CERRAR',
         items: [
           { title: 'Charla con Lucrecia Martel', sub: 'Buenos Aires — 2026' },
           { title: 'Charla con Marttein', sub: 'Buenos Aires — 2026' }
+        ],
+        sections: [
+          {
+            number: '02',
+            kicker: 'Charla / Cine',
+            title: 'Lucrecia Martel',
+            meta: 'Buenos Aires — 2026',
+            lede: 'Una conversación larga sobre <em>filmar en el borde</em>: presupuestos mínimos, decisiones rápidas y una mirada constante a lo largo de toda una película.',
+            body: 'Hablamos de construir mundos sin decorado, de cómo se filmó La Ciénaga con un equipo chico, y de qué se pierde —y qué se gana— cuando todo queda en cuadro.',
+            quote: 'Rodar es primero construir una arquitectura y recién después habitarla.',
+            watchLabel: 'Ver la charla'
+          },
+          {
+            number: '03',
+            kicker: 'Charla / Música',
+            title: 'Marttein',
+            meta: 'Buenos Aires — 2026',
+            lede: 'Del estudio al escenario: cómo se arma una canción cuando <em>todo suena sucio</em> y el error pasa a ser parte del arreglo.',
+            body: 'Una charla sobre producción casera, samplers quemados, mezcla en vivo y la obsesión con el loop hasta que se vuelve textura.',
+            quote: 'Un loop no se termina: se afina hasta que deja de ser un loop.',
+            watchLabel: 'Ver la charla'
+          }
         ]
       },
 
       merch: {
         title: 'Merch — Balderrama',
         heading: 'Merch',
-        description: 'La tienda. Piezas editadas en ediciones cortas y numeradas.',
         items: [
           { title: 'Remera — Logo negro' },
           { title: 'Remera — Logo celeste' },
