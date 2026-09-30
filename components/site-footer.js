@@ -5,6 +5,9 @@
   var SHARED = TEXTS.shared || {};
   var FOOTER = TEXTS.footer || {};
   var NAV = TEXTS.nav || {};
+  var FORM_ENDPOINT = 'https://api.web3forms.com/submit';
+  var WEB3FORMS_ACCESS_KEY = 'c8d722e1-5ec0-4893-a8a3-0b80c87a0b2d';
+  var WEB3FORMS_FROM_NAME = 'Landing Page Contact';
 
   function navLinks() {
     var all = [NAV.home].concat(NAV.items || []);
@@ -73,14 +76,22 @@
         '    transition: background 0.3s ease, color 0.3s ease;',
         '  }',
         '  footer .subscribe input[type="submit"]:hover{ background: #B3D4FF; border-color: #B3D4FF; }',
+        '  footer .subscribe input[type="submit"]:disabled{',
+        '    background: #4a4a4a;',
+        '    border-color: rgba(255,255,255,0.2);',
+        '    color: var(--dim);',
+        '    cursor: not-allowed;',
+        '  }',
         '  footer .subscribe .message{',
         '    display: block;',
         '    min-height: 1.1em;',
         '    margin-top: 10px;',
         '    font-size: 0.8rem;',
+        '    line-height: 1.4;',
         '    color: var(--dim);',
         '  }',
-        '  footer .subscribe .message.is-error{ color: #B3D4FF; }',
+        '  footer .subscribe .message.is-success{ color: var(--white); }',
+        '  footer .subscribe .message.is-error{ color: #FF7A7A; }',
         '  footer .copy{',
         '    width: 100%;',
         '    text-align: center;',
@@ -107,7 +118,11 @@
         '  </div>',
         '  <div class="col subscribe">',
         '    <div class="head">' + FOOTER.stayInLoopTitle + '</div>',
-        '    <form novalidate>',
+        '    <form action="' + FORM_ENDPOINT + '" method="POST" novalidate>',
+        '      <input type="text" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">',
+        '      <input type="hidden" name="access_key" value="' + WEB3FORMS_ACCESS_KEY + '">',
+        '      <input type="hidden" name="from_name" value="' + WEB3FORMS_FROM_NAME + '">',
+        '      <input type="hidden" name="captcha" value="false">',
         '      <div class="field">',
         '        <input type="email" name="email" placeholder="' + FOOTER.emailPlaceholder + '" required>',
         '      </div>',
@@ -120,15 +135,87 @@
       ].join('\n');
       this._form = shadow.querySelector('form');
       this._message = shadow.querySelector('.message');
+      this._submit = shadow.querySelector('input[type="submit"]');
+      this._submitLabel = this._submit.value;
+
+      this._setMessage = (text, state) => {
+        this._message.textContent = text;
+        this._message.classList.toggle('is-success', state === 'success');
+        this._message.classList.toggle('is-error', state === 'error');
+      };
+
+      this._endSubmit = () => {
+        this._submit.disabled = false;
+        this._submit.value = this._submitLabel;
+      };
+
+      this._post = (payload, attempt) => {
+        var self = this;
+        fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: payload
+        })
+          .then(function (res) {
+            return res.json().catch(function () { return {}; })
+              .then(function (data) { return { status: res.status, data: data }; });
+          })
+          .then(function (r) {
+            if (r.status === 429 || r.status >= 500) {
+              var transient = new Error('HTTP ' + r.status);
+              transient.retryable = true;
+              throw transient;
+            }
+            if (r.status < 200 || r.status >= 300) {
+              throw new Error('HTTP ' + r.status + (r.data.message ? ' — ' + r.data.message : ''));
+            }
+            if (!(r.data.success === true || r.data.success === 'true')) {
+              throw new Error(r.data.message || r.data.success || 'Respuesta inesperada del servidor');
+            }
+            self._form.reset();
+            self._setMessage(FOOTER.subscribeSuccess, 'success');
+            self._endSubmit();
+          })
+          .catch(function (err) {
+            if (err.retryable && attempt < 3) {
+              setTimeout(function () { self._post(payload, attempt + 1); }, 1500 * attempt);
+              return;
+            }
+            console.error('[site-footer] submission failed:', err);
+            self._setMessage(
+              FOOTER.subscribeFailed + (err && err.message ? ' (' + err.message + ')' : ''),
+              'error'
+            );
+            self._endSubmit();
+          });
+      };
 
       this._onSubmit = (ev) => {
         ev.preventDefault();
         var input = this._form.querySelector('input[type="email"]');
         var value = (input.value || '').trim();
-        var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-        this._message.textContent = ok ? FOOTER.subscribeSuccess : FOOTER.subscribeError;
-        this._message.classList.toggle('is-error', !ok);
-        if (ok) this._form.reset();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          this._setMessage(FOOTER.subscribeError, 'error');
+          input.focus();
+          return;
+        }
+
+        this._submit.disabled = true;
+        this._submit.value = FOOTER.subscribeSending;
+        this._setMessage('', null);
+
+        var payload = {
+          access_key: WEB3FORMS_ACCESS_KEY,
+          from_name: WEB3FORMS_FROM_NAME,
+          captcha: false,
+          botcheck: this._form.querySelector('input[name="botcheck"]').value,
+          email: value
+        };
+
+        this._post(JSON.stringify(payload), 1);
       };
       this._form.addEventListener('submit', this._onSubmit);
     }

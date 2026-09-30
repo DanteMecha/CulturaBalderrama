@@ -41,8 +41,10 @@
       stayInLoopTitle: 'STAY IN THE LOOP',
       emailPlaceholder: 'Ingresá tu email',
       submitLabel: 'Enviar',
-      subscribeSuccess: 'Gracias por suscribirte.',
-      subscribeError: 'Ingresá un email válido.'
+      subscribeSending: 'Sending...',
+      subscribeSuccess: 'Thank you! Your message has been sent successfully.',
+      subscribeError: 'Ingresá un email válido.',
+      subscribeFailed: 'No se pudo enviar el mensaje. Intentá de nuevo.'
     },
 
     pages: {
