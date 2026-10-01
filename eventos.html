@@ -144,17 +144,6 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  .slide-num{
-    position: absolute;
-    right: 40px;
-    bottom: 32px;
-    z-index: 3;
-    font-family: var(--font-title);
-    font-size: 1.1rem;
-    letter-spacing: 2px;
-    color: var(--celeste);
-  }
-
   .slide[data-side="left"] .slide-photo{ order: -1; }
 
   site-footer{ display: block; margin-top: 40px; }
@@ -164,8 +153,7 @@
     .slide{ grid-template-columns: 1fr; }
     .slide[data-side="left"] .slide-photo{ order: 0; }
     .slide-photo{ min-height: 0; aspect-ratio: 4/3; }
-    .slide-text{ padding: 32px 20px 84px; }
-    .slide-num{ right: 20px; bottom: 22px; }
+    .slide-text{ padding: 32px 20px 56px; }
   }
 
   .modal{
@@ -228,7 +216,7 @@
     <h1 data-text="pages.eventos.heading"></h1>
   </section>
 
-  <article class="slide" data-side="left" id="lucrecia-martel" data-video="https://www.youtube.com/watch?v=9FVElmcy_HE">
+  <article class="slide" data-side="left" id="lucrecia-martel" data-video="https://www.youtube.com/embed/9FVElmcy_HE">
     <div class="slide-text">
       <div class="kicker">
         <span data-text="pages.eventos.sections.0.kicker"></span>
@@ -246,10 +234,9 @@
     <div class="slide-photo">
       <img class="main" src="images/Contenido_Lucrecia_2.jpeg" alt="Fotograma de la charla con Lucrecia Martel">
     </div>
-    <span class="slide-num" data-text="pages.eventos.sections.0.number"></span>
   </article>
 
-  <article class="slide" data-side="right" id="marttein" data-video="https://www.youtube.com/embed/8yaWGfB849k?start=1216&autoplay=1">
+  <article class="slide" data-side="right" id="marttein" data-video="https://www.youtube.com/embed/9FVElmcy_HE">
     <div class="slide-text">
       <div class="kicker">
         <span data-text="pages.eventos.sections.1.kicker"></span>
@@ -265,9 +252,8 @@
       </button>
     </div>
     <div class="slide-photo">
-      <img class="main" src="images/Contenido_Marttein_4.jpeg" alt="Fotograma de la charla con Marttein">
+      <img class="main" src="images/Contenido_Marttein_2.jpeg" alt="Fotograma de la charla con Marttein">
     </div>
-    <span class="slide-num" data-text="pages.eventos.sections.1.number"></span>
   </article>
 </main>
 

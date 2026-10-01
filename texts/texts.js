@@ -94,6 +94,10 @@
       contenido: {
         title: 'Contenido — Balderrama',
         heading: 'Contenido',
+        viewerPrevLabel: 'Foto anterior',
+        viewerNextLabel: 'Foto siguiente',
+        viewerCloseLabel: 'Cerrar galería',
+        viewerOfLabel: 'de',
         items: [
           { title: 'Lucrecia Martel', sub: 'Serie — 2026' },
           { title: 'Lucrecia Martel', sub: 'Detrás de escena — 2026' },
