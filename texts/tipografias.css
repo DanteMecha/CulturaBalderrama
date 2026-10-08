@@ -12,3 +12,29 @@
   --font-body: 'Inter', 'Arial', sans-serif;
   --font-brand: 'Climate Crisis', sans-serif;
 }
+
+/* Sin esto iOS Safari infla el texto solo al rotar o en viewports angostos. */
+html{
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Scrollbar oscuro y angosto: el track compite con el negro del fondo y sobre
+   todo con el hero a sangre, donde una barra clara deja una franja visible. */
+html{
+  scrollbar-width: thin;
+  scrollbar-color: #2a2a2a #000000;
+}
+::-webkit-scrollbar{
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track{
+  background: #000000;
+}
+::-webkit-scrollbar-thumb{
+  background: #2a2a2a;
+}
+::-webkit-scrollbar-thumb:hover{
+  background: #3a3a3a;
+}

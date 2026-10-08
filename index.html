@@ -22,12 +22,25 @@
     font-family: var(--font-body);
     font-weight: 300;
   }
+  /* El hero mide 100vw para cubrir la barra de scroll: se recorta el desborde
+     lateral. `clip` (y no `hidden`) no crea un contenedor de scroll, asi que no
+     afecta al header, al menu ni a 100svh. */
+  html{ overflow-x: clip; }
 
   a{ color: inherit; text-decoration: none; }
 
   /* ---------- hero ---------- */
+  /* El fondo se mide contra 100vw y no contra el ancho del contenido: asi la
+     barra de scroll vertical no deja una franja negra del lado derecho. */
+  .hero-bg,
+  .featured-media{
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+  }
   .hero{
-    height: 100vh;
+    min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -36,7 +49,8 @@
   }
   .hero-bg{
     position: absolute;
-    inset: 0;
+    top: 0;
+    bottom: 0;
     background: #000000 url('images/Contenido_Marttein_1.jpeg') center/cover no-repeat;
     opacity: 0.85;
   }
@@ -54,7 +68,8 @@
   }
   .featured-media{
     position: absolute;
-    inset: 0;
+    top: 0;
+    bottom: 0;
     z-index: 1;
     overflow: hidden;
     pointer-events: none;
@@ -99,7 +114,6 @@
     transition: color 0.3s ease, transform 0.4s ease;
   }
   .featured-titles li.is-active a,
-  .featured-titles a:hover,
   .featured-titles a:focus-visible{
     color: var(--white);
     transform: translateX(10px);
@@ -107,72 +121,19 @@
   .featured-titles a:focus-visible{
     color: #B3D4FF;
   }
-
-  /* ---------- projects grid ---------- */
-  .grid{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--gutter);
-    background: var(--black);
+  /* El hover solo en dispositivos con cursor real: en touch queda pegado
+     despues del tap. El feedback de toque va por :active. */
+  @media (hover: hover) and (pointer: fine){
+    .featured-titles a:hover{
+      color: var(--white);
+      transform: translateX(10px);
+    }
   }
-  .grid.wide{
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .cell{
-    position: relative;
-    aspect-ratio: 16/9;
-    overflow: hidden;
-    background: #0a0a0a;
-    cursor: pointer;
-  }
-  .cell.banner1{
-    grid-column: 1 / -1;
-    aspect-ratio: 4160/2612;
-    cursor: default;
-  }
-  .cell.banner1 img{
-    filter: none;
-  }
-  .cell.banner1:hover img{
-    transform: none;
-    filter: none;
-  }
-  .cell img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: grayscale(15%);
-    transition: transform 0.6s ease, filter 0.6s ease;
-  }
-  .cell:hover img{
-    transform: scale(1.03);
-    filter: grayscale(0%);
-  }
-  .cell .caption{
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    padding: 20px 22px;
-    background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 70%);
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-  .cell:hover .caption{
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .caption .title{
-    font-weight: 500;
-    font-size: 1rem;
-  }
-  .caption .sub{
-    font-family: var(--font-body);
-    font-style: italic;
-    font-size: 0.9rem;
-    color: var(--dim);
-    margin-top: 2px;
+  @media (hover: none){
+    .featured-titles a:active{
+      color: var(--white);
+      transform: translateX(10px);
+    }
   }
 
   /* ---------- about ---------- */
@@ -197,9 +158,32 @@
   }
 
   @media (max-width: 700px){
-    .grid, .grid.wide{ grid-template-columns: 1fr; }
+    /* En vertical la foto de escritorio recorta mal: va una sola para celular. */
+    .hero-bg{
+      background-image: url('images/Inicio_background_phone.jpg');
+    }
     .hero{ padding: calc(var(--header-h, 100px) + 24px) 20px 40px; }
     .featured-titles a{ font-size: clamp(2rem, 11vw, 3rem); }
+    .about{ padding: 72px 20px; }
+    /* En vertical los titulos se apoyan abajo: el velo tiene que ir vertical. */
+    .featured-media::after{
+      background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.75) 100%);
+    }
+  }
+
+  /* Tablet: titulos mas chicos para que respiren. */
+  @media (min-width: 701px) and (max-width: 900px){
+    .hero{ padding: calc(var(--header-h, 100px) + 24px) 28px 48px; }
+    .featured-titles a{ font-size: clamp(2.2rem, 7vw, 3.6rem); }
+    .about{ padding: 96px 28px; }
+  }
+
+  /* Celular apaisado: entra muy poco alto, asi que todo se achica. */
+  @media (max-height: 500px) and (orientation: landscape){
+    .hero{ padding: calc(var(--header-h, 90px) + 16px) 24px 28px; }
+    .featured-titles a{ font-size: clamp(1.6rem, 6vw, 2.4rem); }
+    .about{ padding: 56px 24px; }
+    .about h2{ font-size: 1.3rem; margin-bottom: 18px; }
   }
 </style>
 </head>
@@ -223,12 +207,6 @@
   </section>
 </section>
 
-<section class="grid" id="work">
-  <div class="cell banner1">
-    <img src="images/Banner_1.jpeg" alt="">
-  </div>
-</section>
-
 <section class="about" id="about">
   <h2 data-text="pages.home.aboutTitle"></h2>
   <p data-text="pages.home.aboutText"></p>
@@ -246,25 +224,13 @@
 (function () {
   'use strict';
 
-  var header = document.querySelector('site-header');
-
-  function syncHeaderHeight() {
-    if (!header) return;
-    document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
-  }
-
-  syncHeaderHeight();
-  window.addEventListener('resize', syncHeaderHeight);
-})();
-</script>
-
-<script>
-(function () {
-  'use strict';
-
   var hero = document.querySelector('.hero');
   var list = hero && hero.querySelector('.featured-titles');
   if (!list) return;
+
+  // Los nombres son links a eventos.html: en touch el tap navega, asi que no hay
+  // momento de mostrar el swap. En esos dispositivos el hero queda con .hero-bg.
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
   var items = list.querySelectorAll('li');
   var slides = hero.querySelectorAll('.featured-media img');
@@ -275,8 +241,8 @@
   }
 
   items.forEach(function (item, i) {
-    item.addEventListener('mouseenter', function () { show(i); });
-    item.addEventListener('mouseleave', function () { show(-1); });
+    item.addEventListener('pointerenter', function () { show(i); });
+    item.addEventListener('pointerleave', function () { show(-1); });
     item.querySelector('a').addEventListener('focus', function () { show(i); });
   });
 

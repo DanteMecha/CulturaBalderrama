@@ -37,7 +37,8 @@
       explorarTitle: 'EXPLORAR',
       seguinosTitle: 'SEGUINOS',
       instagram: 'Instagram',
-      vimeo: 'Vimeo',
+      youtube: 'YouTube',
+      youtubeUrl: 'https://www.youtube.com/@culturabalderrama',
       stayInLoopTitle: 'STAY IN THE LOOP',
       emailPlaceholder: 'Ingresá tu email',
       submitLabel: 'Enviar',
@@ -88,7 +89,12 @@
 
       contacto: {
         title: 'Contacto — Balderrama',
-        heading: 'Contacto'
+        heading: 'Contacto',
+        labels: {
+          email: 'Email',
+          instagram: 'Instagram',
+          location: 'Ubicación'
+        }
       },
 
       contenido: {
@@ -124,6 +130,7 @@
         title: 'Eventos — Balderrama',
         heading: 'Eventos',
         closeLabel: 'CERRAR',
+        fallbackLabel: 'ABRIR EN OTRA PESTAÑA',
         items: [
           { title: 'Charla con Lucrecia Martel', sub: 'Buenos Aires — 2026' },
           { title: 'Charla con Marttein', sub: 'Buenos Aires — 2026' }
@@ -137,7 +144,8 @@
             lede: 'Una conversación larga sobre <em>filmar en el borde</em>: presupuestos mínimos, decisiones rápidas y una mirada constante a lo largo de toda una película.',
             body: 'Hablamos de construir mundos sin decorado, de cómo se filmó La Ciénaga con un equipo chico, y de qué se pierde —y qué se gana— cuando todo queda en cuadro.',
             quote: 'Rodar es primero construir una arquitectura y recién después habitarla.',
-            watchLabel: 'Ver la charla'
+            watchLabel: 'Ver la charla',
+            clipsLabel: 'Ver clips del evento'
           },
           {
             number: '03',
@@ -147,7 +155,8 @@
             lede: 'Del estudio al escenario: cómo se arma una canción cuando <em>todo suena sucio</em> y el error pasa a ser parte del arreglo.',
             body: 'Una charla sobre producción casera, samplers quemados, mezcla en vivo y la obsesión con el loop hasta que se vuelve textura.',
             quote: 'Un loop no se termina: se afina hasta que deja de ser un loop.',
-            watchLabel: 'Ver la charla'
+            watchLabel: 'Ver la charla',
+            clipsLabel: 'Ver clips del evento'
           }
         ]
       },

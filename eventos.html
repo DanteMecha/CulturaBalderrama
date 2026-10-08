@@ -27,7 +27,7 @@
   a{ color: inherit; text-decoration: none; }
   em{ font-style: normal; font-weight: 500; color: var(--white); }
 
-  main{ padding-top: 148px; }
+  main{ padding-top: calc(var(--header-h, 148px) + 8px); }
 
   .page-head{ padding: 0 40px; }
   .page-head h1{
@@ -45,6 +45,9 @@
     grid-template-columns: 1.05fr 1fr;
     align-items: stretch;
     margin-top: 90px;
+    /* Los nombres del index enlazan aca: sin esto el destino queda tapado
+       por el header fijo. */
+    scroll-margin-top: calc(var(--header-h, 148px) + 24px);
   }
 
   .slide-text{ padding: 48px 48px 56px; }
@@ -74,7 +77,7 @@
     font-family: var(--font-body);
     font-weight: 500;
     font-size: clamp(1rem, 1.5vw, 1.18rem);
-    line-height: 1.65;
+    line-height: 1.5;
     color: var(--white);
   }
   .body{
@@ -96,11 +99,18 @@
     line-height: 1.55;
   }
 
+  .actions{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 18px;
+    margin-top: 38px;
+  }
+
   .watch{
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    margin-top: 38px;
     padding: 14px 22px;
     border: 1px solid var(--celeste);
     background: none;
@@ -112,12 +122,46 @@
     cursor: pointer;
     transition: background 0.25s ease, color 0.25s ease;
   }
-  .watch:hover{ background: var(--celeste); color: #000; }
   .watch .glyph{
     width: 0; height: 0;
     border-style: solid;
     border-width: 6px 0 6px 10px;
     border-color: transparent transparent transparent currentColor;
+  }
+
+  .clips{
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 22px;
+    border: 1px solid var(--gold);
+    background: none;
+    color: var(--gold);
+    font-family: var(--font-title);
+    text-transform: uppercase;
+    font-size: 0.82rem;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, opacity 0.25s ease;
+  }
+  .clips .glyph{
+    position: relative;
+    width: 14px; height: 11px;
+    border: 1.5px solid currentColor;
+  }
+  .clips .glyph::before{
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 3px 0 3px 5px;
+    border-color: transparent transparent transparent currentColor;
+    transform: translate(-35%, -50%);
+  }
+  .clips[disabled]{
+    opacity: 0.32;
+    cursor: not-allowed;
   }
 
   .slide-photo{
@@ -146,14 +190,44 @@
 
   .slide[data-side="left"] .slide-photo{ order: -1; }
 
+  /* Hover solo con cursor real; en touch el mismo feedback va por :active,
+     que se suelta al levantar el dedo y no queda pegado. */
+  @media (hover: hover) and (pointer: fine){
+    .watch:hover{ background: var(--celeste); color: #000; }
+    .clips:hover{ background: var(--gold); color: #000; }
+    .clips[disabled]:hover{ background: none; color: var(--gold); }
+  }
+  @media (hover: none){
+    .watch:active{ background: var(--celeste); color: #000; }
+    .clips:active{ background: var(--gold); color: #000; }
+    .clips[disabled]:active{ background: none; color: var(--gold); }
+  }
+
   site-footer{ display: block; margin-top: 40px; }
+
+  body.modal-open{ overflow: hidden; }
 
   @media (max-width: 700px){
     .page-head{ padding: 0 20px; }
-    .slide{ grid-template-columns: 1fr; }
-    .slide[data-side="left"] .slide-photo{ order: 0; }
+    .slide{ grid-template-columns: 1fr; margin-top: 56px; }
+    /* En el celu la foto va primero y el texto debajo, en los dos eventos. */
+    .slide .slide-photo{ order: -1; }
     .slide-photo{ min-height: 0; aspect-ratio: 4/3; }
     .slide-text{ padding: 32px 20px 56px; }
+    .actions{ flex-direction: column; align-items: stretch; }
+    .watch, .clips{ justify-content: center; min-height: 48px; }
+  }
+
+  /* Tablet */
+  @media (min-width: 701px) and (max-width: 900px){
+    .page-head{ padding: 0 28px; }
+    .slide-text{ padding: 40px 28px 48px; }
+  }
+
+  /* Celular apaisado */
+  @media (max-height: 500px) and (orientation: landscape){
+    .slide-text{ padding: 28px 24px 40px; }
+    .slide-photo{ min-height: 0; aspect-ratio: 16/9; }
   }
 
   .modal{
@@ -164,7 +238,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px;
+    padding: 96px 40px 40px;
+    overflow-y: auto;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.35s ease;
@@ -173,9 +248,45 @@
     opacity: 1;
     pointer-events: auto;
   }
-  .modal .frame{
+  .modal .stage{
     position: relative;
     width: min(1080px, 100%);
+    flex: 0 0 auto;
+  }
+  .modal .clips-nav{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .modal .clips-nav[hidden]{ display: none; }
+  .modal .clip-tab{
+    padding: 8px 13px;
+    border: 1px solid rgba(232,202,34,0.35);
+    background: none;
+    color: var(--dim);
+    font-family: var(--font-title);
+    font-size: 0.78rem;
+    letter-spacing: 1.5px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+  .modal .clip-tab.is-active{
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #000;
+  }
+  @media (hover: hover) and (pointer: fine){
+    .modal .clip-tab:hover{ border-color: var(--gold); color: var(--gold); }
+  }
+  @media (hover: none){
+    .modal .clip-tab:active{ border-color: var(--gold); color: var(--gold); }
+  }
+  .modal .frame{
+    position: relative;
+    width: 100%;
     background: #000;
   }
   .modal .ratio{
@@ -203,7 +314,40 @@
     cursor: pointer;
     padding: 8px;
   }
-  .modal .close:hover{ color: var(--dim); }
+  @media (hover: hover) and (pointer: fine){
+    .modal .close:hover{ color: var(--dim); }
+  }
+  @media (hover: none){
+    .modal .close:active{ color: var(--dim); }
+  }
+  .modal .fallback{
+    display: inline-block;
+    margin-top: 12px;
+    color: var(--dim);
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232,202,34,0.4);
+    padding-bottom: 2px;
+  }
+  @media (hover: hover) and (pointer: fine){
+    .modal .fallback:hover{ color: var(--gold); }
+  }
+  @media (hover: none){
+    .modal .fallback:active{ color: var(--gold); }
+  }
+
+  /* Estas van DESPUES de las reglas base de .modal: con la misma especificidad
+     gana la ultima, asi que antes no tendrian efecto. */
+  @media (max-width: 700px){
+    .modal{ padding: 76px 12px 24px; }
+    .modal .close{ top: -48px; }
+  }
+  @media (max-height: 500px) and (orientation: landscape){
+    .modal{ padding: 52px 12px 12px; }
+    .modal .close{ top: -40px; }
+  }
 </style>
 </head>
 <body data-page="eventos">
@@ -216,7 +360,8 @@
     <h1 data-text="pages.eventos.heading"></h1>
   </section>
 
-  <article class="slide" data-side="left" id="lucrecia-martel" data-video="https://www.youtube.com/embed/9FVElmcy_HE">
+  <article class="slide" data-side="left" id="lucrecia-martel" data-video="https://www.youtube.com/embed/9FVElmcy_HE"
+  data-clips="1eIxVfaoulBFHJ2caYtJOZ7_BmMs3nrN3, 1zlHBBRAxBGQykDnALl1mmuERkIpkaMKX, 1d0Bh9XEAL3bc160lEtjaWYuwJmCkzLYk, 1TosTocwI3CRgXOwk0qN1BOSUu1FQ9pcm, 1MI72PaQXZiqok5XQ4orIItVwVVRaG7tB, 1M4idZ-Iw51OMPyaFuB1Vl4910quApJWd, 1oZJXjpKHmkLhBzy8z676UDdY4DssTUPF, 1tKccuG23CXv9-T39wgfKq4jUwie6UOT2, 1tX2HWo2O6XTBJz6M8HqRBHAcU-O9B7XW, 1HVNxkwcTDFaR9-Rxht0FZyo_efMZefEA, 1E6mwpZxBUVkzcxYrMl-h4D8_BkxL5e3Q">
     <div class="slide-text">
       <div class="kicker">
         <span data-text="pages.eventos.sections.0.kicker"></span>
@@ -226,17 +371,24 @@
       <p class="lede" data-html="pages.eventos.sections.0.lede"></p>
       <p class="body" data-html="pages.eventos.sections.0.body"></p>
       <blockquote class="quote" data-text="pages.eventos.sections.0.quote"></blockquote>
-      <button class="watch" type="button">
-        <span class="glyph"></span>
-        <span data-text="pages.eventos.sections.0.watchLabel"></span>
-      </button>
+      <div class="actions">
+        <button class="watch" type="button">
+          <span class="glyph"></span>
+          <span data-text="pages.eventos.sections.0.watchLabel"></span>
+        </button>
+        <button class="clips" type="button">
+          <span class="glyph"></span>
+          <span data-text="pages.eventos.sections.0.clipsLabel"></span>
+        </button>
+      </div>
     </div>
     <div class="slide-photo">
       <img class="main" src="images/Contenido_Lucrecia_2.jpeg" alt="Fotograma de la charla con Lucrecia Martel">
     </div>
   </article>
 
-  <article class="slide" data-side="right" id="marttein" data-video="https://www.youtube.com/embed/9FVElmcy_HE">
+  <article class="slide" data-side="right" id="marttein" data-video="https://www.youtube.com/embed/8yaWGfB849k?start=1216&autoplay=1"
+  data-clips="1DwF70mlHRpYc6VFCywXLf3t9q6k4mSJ7, 1EdOLPBQUMKkqHh8TSl06x0Cv-dpmNn38, 1Jn0RTcsgnmDGoBq7uiWJoF11-zcrBfnM, 1NC7hC7IInkA2mkhTSmeS3bRftFk6dmSA, 1o521ACSxpITQv9n-Zt9vT8a-VhDwwFN_">
     <div class="slide-text">
       <div class="kicker">
         <span data-text="pages.eventos.sections.1.kicker"></span>
@@ -246,10 +398,16 @@
       <p class="lede" data-html="pages.eventos.sections.1.lede"></p>
       <p class="body" data-html="pages.eventos.sections.1.body"></p>
       <blockquote class="quote" data-text="pages.eventos.sections.1.quote"></blockquote>
-      <button class="watch" type="button">
-        <span class="glyph"></span>
-        <span data-text="pages.eventos.sections.1.watchLabel"></span>
-      </button>
+      <div class="actions">
+        <button class="watch" type="button">
+          <span class="glyph"></span>
+          <span data-text="pages.eventos.sections.1.watchLabel"></span>
+        </button>
+        <button class="clips" type="button">
+          <span class="glyph"></span>
+          <span data-text="pages.eventos.sections.1.clipsLabel"></span>
+        </button>
+      </div>
     </div>
     <div class="slide-photo">
       <img class="main" src="images/Contenido_Marttein_2.jpeg" alt="Fotograma de la charla con Marttein">
@@ -258,11 +416,15 @@
 </main>
 
 <div class="modal" id="videoModal">
-  <button class="close" id="videoClose" data-text="pages.eventos.closeLabel"></button>
-  <div class="frame">
-    <div class="ratio">
-      <iframe id="videoFrame" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <div class="stage">
+    <button class="close" id="videoClose" data-text="pages.eventos.closeLabel"></button>
+    <div class="clips-nav" id="clipsNav" hidden></div>
+    <div class="frame">
+      <div class="ratio">
+        <iframe id="videoFrame" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
     </div>
+    <a class="fallback" id="videoFallback" href="#" target="_blank" rel="noopener" data-text="pages.eventos.fallbackLabel"></a>
   </div>
 </div>
 
@@ -277,15 +439,101 @@
   const modal = document.getElementById('videoModal');
   const frame = document.getElementById('videoFrame');
   const closeBtn = document.getElementById('videoClose');
-  document.querySelectorAll('.slide').forEach(slide => {
-    slide.querySelector('.watch').addEventListener('click', () => {
-      frame.src = slide.dataset.video;
-      modal.classList.add('open');
+  const clipsNav = document.getElementById('clipsNav');
+  const fallback = document.getElementById('videoFallback');
+
+  const YT_EMBED = /^https:\/\/(?:www\.)?youtube\.com\/embed\/([A-Za-z0-9_-]+)/;
+
+  const toEmbed = value => {
+    const src = value.trim();
+    if (!src) return '';
+    if (/^[A-Za-z0-9_-]{20,}$/.test(src)) return 'https://drive.google.com/file/d/' + src + '/preview';
+    const id = src.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?[^#]*\bid=)([A-Za-z0-9_-]+)/);
+    return id ? 'https://drive.google.com/file/d/' + id[1] + '/preview' : src;
+  };
+
+  let active = { list: [], index: 0 };
+
+  // iOS / Android solo dan el player en pantalla completa si el embed lo pide.
+  const withPlaysInline = src => {
+    if (!src || !YT_EMBED.test(src)) return src;
+    const url = new URL(src);
+    url.searchParams.set('playsinline', '1');
+    return url.toString();
+  };
+
+  // El preview de Drive no siempre carga embebido en el celu: el link de
+  // escape abre el archivo fuera del modal. En YouTube conviene la pagina de
+  // watch, que no depende del embed.
+  const fallbackHref = src => {
+    const m = src && src.match(YT_EMBED);
+    return m ? 'https://www.youtube.com/watch?v=' + m[1] : src;
+  };
+
+  const setSource = src => {
+    frame.src = withPlaysInline(src);
+    fallback.href = fallbackHref(src) || '#';
+  };
+
+  const renderNav = () => {
+    clipsNav.textContent = '';
+    clipsNav.hidden = active.list.length < 2;
+    active.list.forEach((src, i) => {
+      const tab = document.createElement('button');
+      tab.type = 'button';
+      tab.className = 'clip-tab' + (i === active.index ? ' is-active' : '');
+      tab.textContent = String(i + 1).padStart(2, '0');
+      tab.setAttribute('aria-label', 'Clip ' + (i + 1));
+      tab.addEventListener('click', () => goTo(i));
+      clipsNav.appendChild(tab);
     });
+  };
+
+  const goTo = i => {
+    if (active.list.length < 2) return;
+    active.index = (i + active.list.length) % active.list.length;
+    setSource(active.list[active.index]);
+    renderNav();
+  };
+
+  const openModal = src => {
+    setSource(src);
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+  };
+
+  document.querySelectorAll('.slide').forEach(slide => {
+    const watchBtn = slide.querySelector('.watch');
+    const clipsBtn = slide.querySelector('.clips');
+    const clips = (slide.dataset.clips || '')
+      .split(',')
+      .map(toEmbed)
+      .filter(Boolean);
+
+    watchBtn.addEventListener('click', () => {
+      active = { list: [], index: 0 };
+      clipsNav.hidden = true;
+      clipsNav.textContent = '';
+      openModal(slide.dataset.video);
+    });
+
+    if (clips.length) {
+      clipsBtn.addEventListener('click', () => {
+        active = { list: clips, index: 0 };
+        renderNav();
+        openModal(active.list[0]);
+      });
+    } else {
+      clipsBtn.setAttribute('disabled', '');
+    }
   });
+
   const closeModal = () => {
     modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
     frame.src = '';
+    active = { list: [], index: 0 };
+    clipsNav.textContent = '';
   };
   closeBtn.addEventListener('click', closeModal);
   modal.addEventListener('click', e => {
@@ -293,6 +541,9 @@
   });
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeModal();
+    if (!modal.classList.contains('open') || active.list.length < 2) return;
+    if (e.key === 'ArrowRight') goTo(active.index + 1);
+    if (e.key === 'ArrowLeft') goTo(active.index - 1);
   });
 </script>
 
