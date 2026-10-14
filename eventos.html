@@ -268,6 +268,18 @@
       .slide .slide-photo{ order: -1; }
       .slide-photo{ min-height: 0; aspect-ratio: 4/3; }
       .slide-text{ padding: 32px 20px 56px; }
+      /* El kicker (Charla / X + Buenos Aires — 2026) no debe partirse por la
+         mitad: cada parte es un bloque y se achica el tracking para que entren
+         juntas en una linea, igual en los dos eventos. */
+      .kicker{
+        flex-wrap: wrap;
+        column-gap: 10px;
+        row-gap: 4px;
+        font-size: 0.62rem;
+        letter-spacing: 1.5px;
+      }
+      .kicker > span{ white-space: nowrap; }
+      .kicker .place{ letter-spacing: 1px; }
       .event-block{ flex-direction: column; gap: 12px; padding: 32px 0; }
       .actions{ flex-direction: column; align-items: stretch; }
       .watch, .clips{ justify-content: center; min-height: 48px; }
@@ -425,9 +437,9 @@
             <span class="place" data-text="pages.eventos.sections.0.meta"></span>
           </div>
           <h2 data-text="pages.eventos.sections.0.title"></h2>
-          <p data-html="pages.eventos.sections.0.content.0"></p>
-          <p data-html="pages.eventos.sections.0.content.1"></p>
-          <p class="quote" data-html="pages.eventos.sections.0.content.2"></p>
+          <p data-text="pages.eventos.sections.0.lede"></p>
+          <p data-text="pages.eventos.sections.0.body"></p>
+          <p class="quote" data-text="pages.eventos.sections.0.quote"></p>
           <div class="actions">
             <button class="watch" type="button">
               <span class="glyph"></span>
@@ -442,7 +454,7 @@
       </article>
     </div>
     <div class="slide-photo">
-      <img class="main" src="images/Contenido_Lucrecia_2.jpeg" alt="Fotograma de la charla con Lucrecia Martel">
+      <img class="main" src="images/miniaturas/Contenido_Lucrecia_2.jpg" alt="Fotograma de la charla con Lucrecia Martel" decoding="async">
     </div>
   </article>
 
@@ -456,9 +468,9 @@
             <span class="place" data-text="pages.eventos.sections.1.meta"></span>
           </div>
           <h2 data-text="pages.eventos.sections.1.title"></h2>
-          <p data-html="pages.eventos.sections.1.content.0"></p>
-          <p data-html="pages.eventos.sections.1.content.1"></p>
-          <p class="quote" data-html="pages.eventos.sections.1.content.2"></p>
+          <p data-text="pages.eventos.sections.1.lede"></p>
+          <p data-text="pages.eventos.sections.1.body"></p>
+          <p class="quote" data-text="pages.eventos.sections.1.quote"></p>
           <div class="actions">
             <button class="watch" type="button">
               <span class="glyph"></span>
@@ -473,7 +485,7 @@
       </article>
     </div>
     <div class="slide-photo">
-      <img class="main" src="images/Contenido_Marttein_2.jpeg" alt="Fotograma de la charla con Marttein">
+      <img class="main" src="images/miniaturas/Contenido_Marttein_2.jpg" alt="Fotograma de la charla con Marttein" decoding="async">
     </div>
   </article>
 </main>

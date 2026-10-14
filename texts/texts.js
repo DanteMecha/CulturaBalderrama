@@ -11,9 +11,7 @@
       mailtoEmail: 'mailto:info@estudio.com',
       instagramHandle: '@culturabalderrama',
       instagramUrl: 'https://www.instagram.com/culturabalderrama/',
-      youtubeHandle: '@culturabalderrama',
-      youtubeUrl: 'https://www.youtube.com/@culturabalderrama',
-      copyright: 'Copyright © 2026 Dónde iremos a parar',
+      copyright: 'Copyright © 2026 Cultura Balderrama',
       limitedEdition: '$ — Edición limitada'
     },
 
@@ -44,8 +42,8 @@
       stayInLoopTitle: 'STAY IN THE LOOP',
       emailPlaceholder: 'Ingresá tu email',
       submitLabel: 'Enviar',
-      subscribeSending: 'Sending...',
-      subscribeSuccess: 'Thank you! Your message has been sent successfully.',
+      subscribeSending: 'Enviado...',
+      subscribeSuccess: 'Gracias! Te mandamos un mail cuando tengamos nuevas charlas o novedades.',
       subscribeError: 'Ingresá un email válido.',
       subscribeFailed: 'No se pudo enviar el mensaje. Intentá de nuevo.'
     },
@@ -55,7 +53,7 @@
         title: 'Cultura Balderrama',
         heroTitle: 'BALDERRAMA',
         aboutTitle: 'Nosotros',
-        aboutText: 'La cultura es política. Bajo esta idea, tan simple como compleja y desafiante, armamos Balderrama: un espacio pensado para generar encuentros en los que se debata y se propague el arte y nuestra cultura nacional.<br><br>Creemos en la discusión política dentro del campo artístico para defender el rol de la cultura como elemento de transformación y de constitución de nuestra identidad.<br><br>Por eso, armamos encuentros donde invitamos a diferentes artistas a conversar sobre el escenario cultural de nuestro país. Además, abrimos el espacio a proyecciones y música en vivo, para seguir difundiendo y conservando nuestro arte nacional.<br><br>Balderrama nace para que discutamos. Creemos que es importante entender de dónde venimos para pensar hacia dónde vamos.'
+        aboutText: 'La cultura es política. Bajo esta idea (tan simple como compleja y desafiante) armamos este espacio que busca generar encuentros en los que se debata y se propague el arte y nuestra cultura nacional. Creemos en la discusión política dentro del campo artístico para defender el rol de la cultura como elemento de transformación y de constitución de nuestra identidad.'
       },
 
       nosotros: {
@@ -91,7 +89,6 @@
         labels: {
           email: 'Email',
           instagram: 'Instagram',
-          youtube: 'YouTube',
           location: 'Ubicación'
         }
       },
@@ -140,11 +137,9 @@
             kicker: 'Charla / Cine',
             title: 'Lucrecia Martel',
             meta: 'Buenos Aires — 2026',
-            content: [
-              'En nuestro primer encuentro del 2026 invitamos a Lucrecia Martel para que nos comparta su mirada sobre <span class="highlight-gold">cómo se fue modificando el panorama cultural a lo largo de los últimos años.</span>',
-              'Lucrecia nos abrió camino a pensar no solo cómo fueron las cosas, sino cómo modificarlas para que se conviertan en eso que deseamos.',
-              '<span class="highlight-celeste">Pueden ver la charla completa y algunos recortes acá:</span>'
-            ],
+            lede: 'En nuestro primer encuentro del 2026 invitamos a Lucrecia Martel para que nos comparta su mirada sobre cómo se fue modificando el panorama cultural a lo largo de los últimos años.',
+            body: 'Lucrecia nos abrió camino a pensar no solo cómo fueron las cosas, sino cómo modificarlas para que se conviertan en eso que deseamos.',
+            quote: 'Pueden ver la charla completa y algunos recortes acá:',
             watchLabel: 'Ver la charla',
             clipsLabel: 'Ver clips del evento'
           },
@@ -153,11 +148,9 @@
             kicker: 'Charla / Música',
             title: 'Marttein',
             meta: 'Buenos Aires — 2026',
-            content: [
-              'En agosto nos acompañó Marttein, con quién conversamos sobre <span class="highlight-gold">el panorama de la juventud y la música actualmente.</span>',
-              'Marttein nos resaltó la importancia de que se brinden herramientas para formarse en lo que cada uno desea, así después se desarrolla y contribuye a la construcción de una identidad colectiva.',
-              '<span class="highlight-celeste">Pueden ver la charla completa y algunos recortes acá:</span>'
-            ],
+            lede: 'En agosto nos acompañó Marttein, con quién conversamos sobre el panorama de la juventud y la música actualmente.',
+            body: 'Marttein nos resaltó la importancia de que se brinden herramientas para formarse en lo que cada uno desea, así después se desarrolla y contribuye a la construcción de una identidad colectiva.',
+            quote: 'Pueden ver la charla completa y algunos recortes acá:',
             watchLabel: 'Ver la charla',
             clipsLabel: 'Ver clips del evento'
           }
@@ -167,15 +160,11 @@
       merch: {
         title: 'Merch — Balderrama',
         heading: 'Merch',
-        sections: [
-          {
-            kicker: 'Tienda',
-            title: 'Remeras',
-            meta: 'Edición limitada',
-            content: [
-              'Llevá Balderrama con vos. Nuestras remeras forman parte de la identidad del proyecto y están disponibles en edición limitada.'
-            ]
-          }
+        items: [
+          { title: 'Remera — Logo negro' },
+          { title: 'Remera — Logo celeste' },
+          { title: 'Buzo — Logo largo' },
+          { title: 'Tote — Logo largo' }
         ]
       }
     }

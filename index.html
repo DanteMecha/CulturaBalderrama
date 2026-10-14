@@ -195,8 +195,8 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="featured-media">
-    <img src="images/Contenido_Lucrecia_6.jpeg" alt="">
-    <img src="images/Contenido_Marttein_4.jpeg" alt="">
+    <img data-src="images/miniaturas/Contenido_Lucrecia_6.jpg" alt="">
+    <img data-src="images/miniaturas/Contenido_Marttein_4.jpg" alt="">
   </div>
 
   <section class="featured" id="destacados">
@@ -234,6 +234,13 @@
 
   var items = list.querySelectorAll('li');
   var slides = hero.querySelectorAll('.featured-media img');
+
+  // Las fotos del swap solo se piden en devices con cursor: en el celu quedan
+  // sin src y no se descargan (el fondo lo cubre .hero-bg).
+  slides.forEach(function (slide) {
+    var src = slide.getAttribute('data-src');
+    if (src) slide.src = src;
+  });
 
   function show(i) {
     slides.forEach(function (slide, n) { slide.classList.toggle('is-active', n === i); });
