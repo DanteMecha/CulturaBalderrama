@@ -11,6 +11,8 @@
       mailtoEmail: 'mailto:info@estudio.com',
       instagramHandle: '@culturabalderrama',
       instagramUrl: 'https://www.instagram.com/culturabalderrama/',
+      youtubeHandle: '@culturabalderrama',
+      youtubeUrl: 'https://www.youtube.com/@culturabalderrama',
       copyright: 'Copyright © 2026 Dónde iremos a parar',
       limitedEdition: '$ — Edición limitada'
     },
@@ -53,7 +55,7 @@
         title: 'Cultura Balderrama',
         heroTitle: 'BALDERRAMA',
         aboutTitle: 'Nosotros',
-        aboutText: 'La cultura es política. Bajo esta idea (tan simple como compleja y desafiante) armamos este espacio que busca generar encuentros en los que se debata y se propague el arte y nuestra cultura nacional. Creemos en la discusión política dentro del campo artístico para defender el rol de la cultura como elemento de transformación y de constitución de nuestra identidad.'
+        aboutText: 'La cultura es política. Bajo esta idea, tan simple como compleja y desafiante, armamos Balderrama: un espacio pensado para generar encuentros en los que se debata y se propague el arte y nuestra cultura nacional.<br><br>Creemos en la discusión política dentro del campo artístico para defender el rol de la cultura como elemento de transformación y de constitución de nuestra identidad.<br><br>Por eso, armamos encuentros donde invitamos a diferentes artistas a conversar sobre el escenario cultural de nuestro país. Además, abrimos el espacio a proyecciones y música en vivo, para seguir difundiendo y conservando nuestro arte nacional.<br><br>Balderrama nace para que discutamos. Creemos que es importante entender de dónde venimos para pensar hacia dónde vamos.'
       },
 
       nosotros: {
@@ -62,26 +64,22 @@
         blocks: [
           {
             num: '01',
+            heading: 'Nosotros',
+            content: [
+              'La cultura es política. Bajo esta idea, tan simple como compleja y desafiante, armamos Balderrama: un espacio pensado para generar encuentros en los que se debata y se propague el arte y nuestra cultura nacional.',
+              'Creemos en la discusión política dentro del campo artístico para defender el rol de la cultura como elemento de transformación y de constitución de nuestra identidad.',
+              'Por eso, armamos encuentros donde invitamos a diferentes artistas a conversar sobre el escenario cultural de nuestro país. Además, abrimos el espacio a proyecciones y música en vivo, para seguir difundiendo y conservando nuestro arte nacional.',
+              'Balderrama nace para que discutamos. Creemos que es importante entender de dónde venimos para pensar hacia dónde vamos.'
+            ]
+          },
+          {
+            num: '02',
             heading: 'Por qué Balderrama',
             content: [
               'Balderrama es una histórica Peña fundada en 1953, en Salta, por los hermanos Juan, Daria y Celestino Balderrama. Punto de encuentro de músicos y poetas, fue conocida como "Templo mayor del folclore".',
               'Conocimos la peña por la zamba "Balderrama" y su estribillo que expresa el miedo a perder ese espacio cultural.',
               '"Lucero solito, brote del alba ¿dónde iremos a parar si se apaga Balderrama?"',
-              'En honor al encuentro, a la cultura, a quienes crearon esos espacios (como la familia Balderrama) y en tiempos donde el arte y lo colectivo esta en juego, decidimos nombrarnos de ésta forma.'
-            ]
-          },
-          {
-            num: '02',
-            heading: 'Balderrama',
-            content: [
-              'La cultura es política. Bajo esta idea (tan simple como compleja y desafiante) armamos este espacio que busca <span class="highlight">generar encuentros</span> en los que se debata y se propague el arte y nuestra cultura nacional. Creemos en la discusión política dentro del campo artístico para defender el rol de la cultura como elemento de transformación y de constitución de nuestra identidad.'
-            ]
-          },
-          {
-            num: '03',
-            heading: '¿Qué hacemos?',
-            content: [
-              'Balderrama propone <span class="highlight">acercarnos a discutir cultura y política</span> en clave. Conversaciones con artistas, Proyecciones, Música en vivo. Debatir de dónde venimos y hacia dónde vamos. Difundir y conservar el arte nacional.'
+              'En honor al encuentro y a la cultura y en tiempos donde el arte y lo colectivo están en juego, decidimos nombrar a este proyecto; Balderrama.'
             ]
           }
         ]
@@ -93,6 +91,7 @@
         labels: {
           email: 'Email',
           instagram: 'Instagram',
+          youtube: 'YouTube',
           location: 'Ubicación'
         }
       },
@@ -141,9 +140,11 @@
             kicker: 'Charla / Cine',
             title: 'Lucrecia Martel',
             meta: 'Buenos Aires — 2026',
-            lede: 'Una conversación larga sobre <em>filmar en el borde</em>: presupuestos mínimos, decisiones rápidas y una mirada constante a lo largo de toda una película.',
-            body: 'Hablamos de construir mundos sin decorado, de cómo se filmó La Ciénaga con un equipo chico, y de qué se pierde —y qué se gana— cuando todo queda en cuadro.',
-            quote: 'Rodar es primero construir una arquitectura y recién después habitarla.',
+            content: [
+              'En nuestro primer encuentro del 2026 invitamos a Lucrecia Martel para que nos comparta su mirada sobre <span class="highlight-gold">cómo se fue modificando el panorama cultural a lo largo de los últimos años.</span>',
+              'Lucrecia nos abrió camino a pensar no solo cómo fueron las cosas, sino cómo modificarlas para que se conviertan en eso que deseamos.',
+              '<span class="highlight-celeste">Pueden ver la charla completa y algunos recortes acá:</span>'
+            ],
             watchLabel: 'Ver la charla',
             clipsLabel: 'Ver clips del evento'
           },
@@ -152,9 +153,11 @@
             kicker: 'Charla / Música',
             title: 'Marttein',
             meta: 'Buenos Aires — 2026',
-            lede: 'Del estudio al escenario: cómo se arma una canción cuando <em>todo suena sucio</em> y el error pasa a ser parte del arreglo.',
-            body: 'Una charla sobre producción casera, samplers quemados, mezcla en vivo y la obsesión con el loop hasta que se vuelve textura.',
-            quote: 'Un loop no se termina: se afina hasta que deja de ser un loop.',
+            content: [
+              'En agosto nos acompañó Marttein, con quién conversamos sobre <span class="highlight-gold">el panorama de la juventud y la música actualmente.</span>',
+              'Marttein nos resaltó la importancia de que se brinden herramientas para formarse en lo que cada uno desea, así después se desarrolla y contribuye a la construcción de una identidad colectiva.',
+              '<span class="highlight-celeste">Pueden ver la charla completa y algunos recortes acá:</span>'
+            ],
             watchLabel: 'Ver la charla',
             clipsLabel: 'Ver clips del evento'
           }
@@ -164,11 +167,15 @@
       merch: {
         title: 'Merch — Balderrama',
         heading: 'Merch',
-        items: [
-          { title: 'Remera — Logo negro' },
-          { title: 'Remera — Logo celeste' },
-          { title: 'Buzo — Logo largo' },
-          { title: 'Tote — Logo largo' }
+        sections: [
+          {
+            kicker: 'Tienda',
+            title: 'Remeras',
+            meta: 'Edición limitada',
+            content: [
+              'Llevá Balderrama con vos. Nuestras remeras forman parte de la identidad del proyecto y están disponibles en edición limitada.'
+            ]
+          }
         ]
       }
     }

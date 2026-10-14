@@ -80,24 +80,77 @@
     line-height: 1.5;
     color: var(--white);
   }
-  .body{
-    max-width: 52ch;
-    margin-top: 20px;
-    font-family: var(--font-body);
-    font-weight: 500;
-    font-size: 0.95rem;
-    line-height: 1.8;
-    color: rgba(242,241,237,0.72);
+  .event-block{
+    display: flex;
+    gap: 28px;
+    padding: 44px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
   }
-  .quote{
-    max-width: 40ch;
-    margin-top: 34px;
-    font-family: var(--font-body);
-    font-weight: 500;
-    color: var(--gold);
-    font-size: 1.05rem;
-    line-height: 1.55;
+  .event-block:first-child{
+    padding-top: 0;
+    border-top: none;
   }
+  .event-block:last-child{
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .event-block .num{
+    font-family: var(--font-body);
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #D6E6F2;
+    letter-spacing: 0.05em;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    line-height: 1.1;
+    flex-shrink: 0;
+  }
+
+  .event-content h2{
+    font-family: var(--font-title);
+    text-transform: uppercase;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 28px;
+    margin-top: 0;
+  }
+
+  .kicker{
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--celeste);
+    margin-bottom: 18px;
+  }
+  .kicker .place{ color: var(--dim); letter-spacing: 1.5px; }
+
+  .highlight-gold { color: var(--gold); }
+  .highlight-celeste { color: var(--celeste); }
+
+    .event-content p{
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+      color: rgba(242,241,237,0.72);
+      max-width: 62ch;
+    }
+  .event-content p + p { margin-top: 1.2em; }
+  .event-content p:last-child{ margin-bottom: 0; }
+    .event-content .quote{
+      color: var(--celeste);
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 17px;
+      line-height: 1.6;
+      margin-top: 22px;
+      max-width: 62ch;
+    }
 
   .actions{
     display: flex;
@@ -106,6 +159,7 @@
     gap: 14px 18px;
     margin-top: 38px;
   }
+  .event-content .actions{ margin-top: 38px; }
 
   .watch{
     display: inline-flex;
@@ -207,16 +261,17 @@
 
   body.modal-open{ overflow: hidden; }
 
-  @media (max-width: 700px){
-    .page-head{ padding: 0 20px; }
-    .slide{ grid-template-columns: 1fr; margin-top: 56px; }
-    /* En el celu la foto va primero y el texto debajo, en los dos eventos. */
-    .slide .slide-photo{ order: -1; }
-    .slide-photo{ min-height: 0; aspect-ratio: 4/3; }
-    .slide-text{ padding: 32px 20px 56px; }
-    .actions{ flex-direction: column; align-items: stretch; }
-    .watch, .clips{ justify-content: center; min-height: 48px; }
-  }
+    @media (max-width: 700px){
+      .page-head{ padding: 0 20px; }
+      .slide{ grid-template-columns: 1fr; margin-top: 56px; }
+      /* En el celu la foto va primero y el texto debajo, en los dos eventos. */
+      .slide .slide-photo{ order: -1; }
+      .slide-photo{ min-height: 0; aspect-ratio: 4/3; }
+      .slide-text{ padding: 32px 20px 56px; }
+      .event-block{ flex-direction: column; gap: 12px; padding: 32px 0; }
+      .actions{ flex-direction: column; align-items: stretch; }
+      .watch, .clips{ justify-content: center; min-height: 48px; }
+    }
 
   /* Tablet */
   @media (min-width: 701px) and (max-width: 900px){
@@ -361,53 +416,61 @@
   </section>
 
   <article class="slide" data-side="left" id="lucrecia-martel" data-video="https://www.youtube.com/embed/9FVElmcy_HE"
-  data-clips="1eIxVfaoulBFHJ2caYtJOZ7_BmMs3nrN3, 1zlHBBRAxBGQykDnALl1mmuERkIpkaMKX, 1d0Bh9XEAL3bc160lEtjaWYuwJmCkzLYk, 1TosTocwI3CRgXOwk0qN1BOSUu1FQ9pcm, 1MI72PaQXZiqok5XQ4orIItVwVVRaG7tB, 1M4idZ-Iw51OMPyaFuB1Vl4910quApJWd, 1oZJXjpKHmkLhBzy8z676UDdY4DssTUPF, 1tKccuG23CXv9-T39wgfKq4jUwie6UOT2, 1tX2HWo2O6XTBJz6M8HqRBHAcU-O9B7XW, 1HVNxkwcTDFaR9-Rxht0FZyo_efMZefEA, 1E6mwpZxBUVkzcxYrMl-h4D8_BkxL5e3Q">
+  data-clips="https://www.youtube.com/shorts/h2Ll6zO-9Co, https://www.youtube.com/shorts/9T1_rxReSbo, https://www.youtube.com/shorts/iI8TywlJjn0">
     <div class="slide-text">
-      <div class="kicker">
-        <span data-text="pages.eventos.sections.0.kicker"></span>
-        <span class="place" data-text="pages.eventos.sections.0.meta"></span>
-      </div>
-      <h2 data-text="pages.eventos.sections.0.title"></h2>
-      <p class="lede" data-html="pages.eventos.sections.0.lede"></p>
-      <p class="body" data-html="pages.eventos.sections.0.body"></p>
-      <blockquote class="quote" data-text="pages.eventos.sections.0.quote"></blockquote>
-      <div class="actions">
-        <button class="watch" type="button">
-          <span class="glyph"></span>
-          <span data-text="pages.eventos.sections.0.watchLabel"></span>
-        </button>
-        <button class="clips" type="button">
-          <span class="glyph"></span>
-          <span data-text="pages.eventos.sections.0.clipsLabel"></span>
-        </button>
-      </div>
+      <article class="event-block">
+        <div class="event-content">
+          <div class="kicker">
+            <span data-text="pages.eventos.sections.0.kicker"></span>
+            <span class="place" data-text="pages.eventos.sections.0.meta"></span>
+          </div>
+          <h2 data-text="pages.eventos.sections.0.title"></h2>
+          <p data-html="pages.eventos.sections.0.content.0"></p>
+          <p data-html="pages.eventos.sections.0.content.1"></p>
+          <p class="quote" data-html="pages.eventos.sections.0.content.2"></p>
+          <div class="actions">
+            <button class="watch" type="button">
+              <span class="glyph"></span>
+              <span data-text="pages.eventos.sections.0.watchLabel"></span>
+            </button>
+            <button class="clips" type="button">
+              <span class="glyph"></span>
+              <span data-text="pages.eventos.sections.0.clipsLabel"></span>
+            </button>
+          </div>
+        </div>
+      </article>
     </div>
     <div class="slide-photo">
       <img class="main" src="images/Contenido_Lucrecia_2.jpeg" alt="Fotograma de la charla con Lucrecia Martel">
     </div>
   </article>
 
-  <article class="slide" data-side="right" id="marttein" data-video="https://www.youtube.com/embed/8yaWGfB849k?start=1216&autoplay=1"
-  data-clips="1DwF70mlHRpYc6VFCywXLf3t9q6k4mSJ7, 1EdOLPBQUMKkqHh8TSl06x0Cv-dpmNn38, 1Jn0RTcsgnmDGoBq7uiWJoF11-zcrBfnM, 1NC7hC7IInkA2mkhTSmeS3bRftFk6dmSA, 1o521ACSxpITQv9n-Zt9vT8a-VhDwwFN_">
+  <article class="slide" data-side="right" id="marttein" data-video="https://www.youtube.com/embed/9FVElmcy_HE"
+  data-clips="https://www.youtube.com/shorts/8SyVrfRN-Oo, https://www.youtube.com/shorts/aJtTpnJlliY">
     <div class="slide-text">
-      <div class="kicker">
-        <span data-text="pages.eventos.sections.1.kicker"></span>
-        <span class="place" data-text="pages.eventos.sections.1.meta"></span>
-      </div>
-      <h2 data-text="pages.eventos.sections.1.title"></h2>
-      <p class="lede" data-html="pages.eventos.sections.1.lede"></p>
-      <p class="body" data-html="pages.eventos.sections.1.body"></p>
-      <blockquote class="quote" data-text="pages.eventos.sections.1.quote"></blockquote>
-      <div class="actions">
-        <button class="watch" type="button">
-          <span class="glyph"></span>
-          <span data-text="pages.eventos.sections.1.watchLabel"></span>
-        </button>
-        <button class="clips" type="button">
-          <span class="glyph"></span>
-          <span data-text="pages.eventos.sections.1.clipsLabel"></span>
-        </button>
-      </div>
+      <article class="event-block">
+        <div class="event-content">
+          <div class="kicker">
+            <span data-text="pages.eventos.sections.1.kicker"></span>
+            <span class="place" data-text="pages.eventos.sections.1.meta"></span>
+          </div>
+          <h2 data-text="pages.eventos.sections.1.title"></h2>
+          <p data-html="pages.eventos.sections.1.content.0"></p>
+          <p data-html="pages.eventos.sections.1.content.1"></p>
+          <p class="quote" data-html="pages.eventos.sections.1.content.2"></p>
+          <div class="actions">
+            <button class="watch" type="button">
+              <span class="glyph"></span>
+              <span data-text="pages.eventos.sections.1.watchLabel"></span>
+            </button>
+            <button class="clips" type="button">
+              <span class="glyph"></span>
+              <span data-text="pages.eventos.sections.1.clipsLabel"></span>
+            </button>
+          </div>
+        </div>
+      </article>
     </div>
     <div class="slide-photo">
       <img class="main" src="images/Contenido_Marttein_2.jpeg" alt="Fotograma de la charla con Marttein">
@@ -444,9 +507,13 @@
 
   const YT_EMBED = /^https:\/\/(?:www\.)?youtube\.com\/embed\/([A-Za-z0-9_-]+)/;
 
+  const YT_URL = /(?:youtube\.com\/(?:shorts\/|watch\?v=|embed\/)|youtu\.be\/)([A-Za-z0-9_-]+)/;
+
   const toEmbed = value => {
     const src = value.trim();
     if (!src) return '';
+    const yt = src.match(YT_URL);
+    if (yt) return 'https://www.youtube.com/embed/' + yt[1];
     if (/^[A-Za-z0-9_-]{20,}$/.test(src)) return 'https://drive.google.com/file/d/' + src + '/preview';
     const id = src.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?[^#]*\bid=)([A-Za-z0-9_-]+)/);
     return id ? 'https://drive.google.com/file/d/' + id[1] + '/preview' : src;

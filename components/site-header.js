@@ -108,7 +108,7 @@
       this._onOpen = () => this._setOpen(true);
       this._onClose = () => this._setOpen(false);
       this._toggle.addEventListener('click', this._onToggle);
-      document.addEventListener('menu:toggle', this._onOpen);
+      document.addEventListener('menu:open', this._onOpen);
       document.addEventListener('menu:close', this._onClose);
 
       // El header es el unico que sabe cuanto mide: publica --header-h para que

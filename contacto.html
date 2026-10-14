@@ -73,32 +73,32 @@
     transition: color 0.3s ease, transform 0.4s ease;
   }
   a.value{ display: inline-block; }
-  a.value:focus-visible,
-  .contact-row .value.is-static{
-    color: var(--white);
-  }
   a.value:focus-visible{
+    color: var(--white);
     transform: translateX(10px);
   }
   /* El hover solo con cursor real: en touch queda pegado tras el tap. */
   @media (hover: hover) and (pointer: fine){
-    a.value:hover{
+    a.value:hover,
+    .contact-row .value.is-static:hover{
       color: var(--white);
       transform: translateX(10px);
     }
   }
   @media (hover: none){
-    a.value:active{
+    a.value:active,
+    .contact-row .value.is-static:active{
       color: var(--white);
       transform: translateX(10px);
     }
   }
 
   @media (max-width: 700px){
-    .page-head{ padding: 0 20px 40px; }
-    .contact{ padding: 30px 20px 60px; }
+    .page-head{ padding: 0 20px 20px; }
+    .contact{ padding: 0 20px 60px; }
     .contact-row{ flex-direction: column; gap: 12px; padding: 28px 0; }
-    .contact-row .label{ padding-top: 0; }
+    /* En columna el flex-basis pasa a ser alto: sin esto el label se estira a 150px. */
+    .contact-row .label{ flex: 0 0 auto; padding-top: 0; }
     .contact-row .value{ font-size: clamp(1.5rem, 6.5vw, 1.9rem); }
   }
 
@@ -127,6 +127,10 @@
     <article class="contact-row">
       <div class="label" data-text="pages.contacto.labels.instagram"></div>
       <a class="value" href="#" data-text="shared.instagramHandle" data-href="shared.instagramUrl" target="_blank" rel="noopener"></a>
+    </article>
+    <article class="contact-row">
+      <div class="label" data-text="pages.contacto.labels.youtube"></div>
+      <a class="value" href="#" data-text="shared.youtubeHandle" data-href="shared.youtubeUrl" target="_blank" rel="noopener"></a>
     </article>
     <article class="contact-row">
       <div class="label" data-text="pages.contacto.labels.location"></div>

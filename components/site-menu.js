@@ -123,8 +123,15 @@
         .map((item) => '<a href="' + item.href + '">' + item.label + '</a>')
         .join('');
 
-      this._onToggle = () => this.toggleAttribute('open');
-      this._onClose = () => this.removeAttribute('open');
+      this._onToggle = () => {
+        const willOpen = !this.hasAttribute('open');
+        this.toggleAttribute('open', willOpen);
+        document.dispatchEvent(new CustomEvent(willOpen ? 'menu:open' : 'menu:close'));
+      };
+      this._onClose = () => {
+        this.removeAttribute('open');
+        document.dispatchEvent(new CustomEvent('menu:close'));
+      };
       this._onLink = (ev) => {
         if (ev.target.closest('a')) closeMenu();
       };

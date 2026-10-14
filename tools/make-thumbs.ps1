@@ -1,6 +1,6 @@
 param(
   [string]$Source = 'images',
-  [string]$Dest = 'images/thumbs',
+  [string]$Dest = 'images/miniaturas',
   [string]$Filter = 'Contenido_*.jpeg',
   [int]$Width = 1200,
   [long]$Quality = 82

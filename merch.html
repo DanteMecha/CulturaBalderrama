@@ -9,7 +9,9 @@
 <style>
   :root{
     --black: #000000;
-    --white: #f5f5f5;
+    --white: #f2f1ed;
+    --gold: #e8ca22;
+    --celeste: #9EC5EC;
     --dim: #6b6b6b;
     --gutter: 2px;
   }
@@ -24,34 +26,79 @@
   }
 
   a{ color: inherit; text-decoration: none; }
+  em{ font-style: normal; font-weight: 500; color: var(--white); }
 
-  main{ padding-top: calc(var(--header-h, 140px) + 8px); }
-  .page-head{
-    padding: 0 40px 50px;
-  }
+  main{ padding-top: calc(var(--header-h, 148px) + 8px); }
+
+  .page-head{ padding: 0 40px; }
   .page-head h1{
     font-family: var(--font-title);
     text-transform: uppercase;
     font-size: clamp(2.5rem, 6vw, 5rem);
     line-height: 0.9;
     letter-spacing: -0.02em;
+    color: var(--white);
   }
 
-  .grid{
+  .slide{
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    align-items: stretch;
+    margin-top: 90px;
+  }
+
+  .slide-text{ padding: 48px 48px 56px; }
+
+  .kicker{
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--celeste);
+    margin-bottom: 18px;
+  }
+  .kicker .place{ color: var(--dim); letter-spacing: 1.5px; }
+
+  .event-content h2{
+    font-family: var(--font-title);
+    text-transform: uppercase;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 28px;
+    margin-top: 0;
+  }
+
+  .event-content p{
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    color: rgba(242,241,237,0.72);
+    max-width: 62ch;
+  }
+  .event-content p:last-child{ margin-bottom: 0; }
+
+  .highlight-gold { color: var(--gold); }
+  .highlight-celeste { color: var(--celeste); }
+
+  .gallery{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    align-content: start;
     gap: var(--gutter);
   }
-  .grid.wide{
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .cell{
+  .gallery .cell{
     position: relative;
-    aspect-ratio: 16/9;
+    aspect-ratio: 1/1;
     overflow: hidden;
     background: #0a0a0a;
   }
-  .cell img{
+  .gallery .cell img{
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -60,43 +107,32 @@
     transition: transform 0.6s ease, filter 0.6s ease;
   }
   @media (hover: hover) and (pointer: fine){
-    .cell:hover img{
+    .gallery .cell:hover img{
       transform: scale(1.03);
       filter: grayscale(0%);
     }
   }
   @media (hover: none){
-    .cell:active img{
+    .gallery .cell:active img{
       transform: scale(1.03);
       filter: grayscale(0%);
     }
-  }
-  .cell .caption{
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    padding: 20px 22px;
-    background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 70%);
-  }
-  .caption .title{ font-weight: 500; font-size: 1rem; }
-  .caption .price{
-    font-family: var(--font-body);
-    font-style: italic;
-    font-size: 0.9rem;
-    color: var(--dim);
-    margin-top: 2px;
   }
 
   site-footer{ display: block; margin-top: 80px; }
 
   @media (max-width: 700px){
-    .grid, .grid.wide{ grid-template-columns: 1fr; }
-    .page-head{ padding: 0 20px 40px; }
-    .cell .caption{ padding: 16px 18px; }
+    .page-head{ padding: 0 20px; }
+    .slide{ grid-template-columns: 1fr; margin-top: 56px; }
+    .slide-text{ padding: 32px 20px 40px; }
+    .event-content h2{ margin-bottom: 20px; }
   }
 
   /* Tablet */
   @media (min-width: 701px) and (max-width: 900px){
-    .page-head{ padding: 0 28px 40px; }
+    .page-head{ padding: 0 28px; }
+    .slide{ grid-template-columns: 1fr; }
+    .slide-text{ padding: 40px 28px 48px; }
   }
 </style>
 </head>
@@ -109,36 +145,35 @@
   <section class="page-head">
     <h1 data-text="pages.merch.heading"></h1>
   </section>
-  <section class="grid" id="work">
-    <div class="cell">
-      <img src="images/Logo_negro_sobre_blaco.jpg" alt="">
-      <div class="caption">
-        <div class="title" data-text="pages.merch.items.0.title"></div>
-        <div class="price" data-text="shared.limitedEdition"></div>
+
+  <article class="slide" data-side="left" id="remeras">
+    <div class="slide-text">
+      <article class="event-block">
+        <div class="event-content">
+          <div class="kicker">
+            <span data-text="pages.merch.sections.0.kicker"></span>
+            <span class="place" data-text="pages.merch.sections.0.meta"></span>
+          </div>
+          <h2 data-text="pages.merch.sections.0.title"></h2>
+          <p data-html="pages.merch.sections.0.content.0"></p>
+        </div>
+      </article>
+    </div>
+    <div class="gallery">
+      <div class="cell">
+        <img src="images/Logo_negro_sobre_blaco.jpg" alt="Remera Balderrama — Logo negro" loading="lazy" decoding="async">
+      </div>
+      <div class="cell">
+        <img src="images/Logo_celeste_sobre_blanco.jpg" alt="Remera Balderrama — Logo celeste" loading="lazy" decoding="async">
+      </div>
+      <div class="cell">
+        <img src="images/Logo_largo_celeste_sobre_blanco.jpg" alt="Remera Balderrama — Logo largo celeste" loading="lazy" decoding="async">
+      </div>
+      <div class="cell">
+        <img src="images/Logo_largo_negro_sobre_blanco.jpg" alt="Remera Balderrama — Logo largo negro" loading="lazy" decoding="async">
       </div>
     </div>
-    <div class="cell">
-      <img src="images/Logo_celeste_sobre_blanco.jpg" alt="">
-      <div class="caption">
-        <div class="title" data-text="pages.merch.items.1.title"></div>
-        <div class="price" data-text="shared.limitedEdition"></div>
-      </div>
-    </div>
-    <div class="cell">
-      <img src="images/Logo_largo_celeste_sobre_blanco.jpg" alt="">
-      <div class="caption">
-        <div class="title" data-text="pages.merch.items.2.title"></div>
-        <div class="price" data-text="shared.limitedEdition"></div>
-      </div>
-    </div>
-    <div class="cell">
-      <img src="images/Logo_largo_negro_sobre_blanco.jpg" alt="">
-      <div class="caption">
-        <div class="title" data-text="pages.merch.items.3.title"></div>
-        <div class="price" data-text="shared.limitedEdition"></div>
-      </div>
-    </div>
-  </section>
+  </article>
 </main>
 
 <site-footer></site-footer>
