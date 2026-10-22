@@ -3,7 +3,8 @@
 
   var TEXTS = window.TEXTS || {};
   var NAV = TEXTS.nav || {};
-  var MENU_LINKS = NAV.items || [];
+  // Los items marcados como `hidden` no se muestran todavia (merch).
+  var MENU_LINKS = (NAV.items || []).filter(function (item) { return !item.hidden; });
 
   function closeMenu() {
     document.dispatchEvent(new CustomEvent('menu:close'));

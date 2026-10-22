@@ -12,7 +12,9 @@
   var BANNER_IMAGE = 'Banner_1_recortado.jpeg';
 
   function navLinks() {
-    var all = [NAV.home].concat(NAV.items || []);
+    // Los items marcados como `hidden` no se muestran todavia (merch).
+    var items = (NAV.items || []).filter(function (item) { return !item.hidden; });
+    var all = [NAV.home].concat(items);
     return all.map(function (item) {
       return '<a href="' + item.href + '">' + item.label + '</a>';
     }).join('\n    ');
@@ -160,7 +162,8 @@
         '    <div class="col">',
         '      <div class="head">' + FOOTER.seguinosTitle + '</div>',
         '      <a href="' + SHARED.instagramUrl + '" target="_blank" rel="noopener">' + FOOTER.instagram + '</a>',
-        '      <a href="' + FOOTER.youtubeUrl + '" target="_blank" rel="noopener">' + FOOTER.youtube + '</a>',
+        '      <a href="' + SHARED.youtubeUrl + '" target="_blank" rel="noopener">' + FOOTER.youtube + '</a>',
+        '      <a href="' + SHARED.tiktokUrl + '" target="_blank" rel="noopener">' + FOOTER.tiktok + '</a>',
         '    </div>',
         '    <div class="col subscribe">',
         '      <div class="head">' + FOOTER.stayInLoopTitle + '</div>',

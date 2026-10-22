@@ -5,12 +5,19 @@
     shared: {
       projectName: 'Balderrama',
       brandLogo: 'BALDERRAMA',
+      // Version del logo partido en silabas: se usa en el header de las
+      // paginas que no son el index.
+      brandLogoSyllables: 'BALDERRAMA.',
       slogan: 'Dónde iremos a parar',
       location: 'Buenos Aires, Argentina',
       email: 'info@estudio.com',
       mailtoEmail: 'mailto:info@estudio.com',
       instagramHandle: '@culturabalderrama',
       instagramUrl: 'https://www.instagram.com/culturabalderrama/',
+      youtubeHandle: '@culturabalderrama',
+      youtubeUrl: 'https://www.youtube.com/@culturabalderrama',
+      tiktokHandle: '@culturabalderrama',
+      tiktokUrl: 'https://www.tiktok.com/@culturabalderrama?_r=1&_t=ZS-9AkpTqMeApc',
       copyright: 'Copyright © 2026 Cultura Balderrama',
       limitedEdition: '$ — Edición limitada'
     },
@@ -25,7 +32,9 @@
       home: { href: 'index.html', label: 'Inicio' },
       items: [
         { href: 'eventos.html', label: 'Eventos' },
-        { href: 'merch.html', label: 'Merch' },
+        // Merch todavia no se publica: faltan las fotos y los textos finales.
+        // Sacar el flag `hidden` (o ponerlo en false) cuando este listo.
+        { href: 'merch.html', label: 'Merch', hidden: true },
         { href: 'contenido.html', label: 'Contenido' },
         { href: 'nosotros.html', label: 'Sobre nosotros' },
         { href: 'contacto.html', label: 'Contacto' }
@@ -38,8 +47,8 @@
       seguinosTitle: 'SEGUINOS',
       instagram: 'Instagram',
       youtube: 'YouTube',
-      youtubeUrl: 'https://www.youtube.com/@culturabalderrama',
-      stayInLoopTitle: 'STAY IN THE LOOP',
+      tiktok: 'TikTok',
+      stayInLoopTitle: 'ANOTATE PARA ENTERARTE DE NUESTROS EVENTOS',
       emailPlaceholder: 'Ingresá tu email',
       submitLabel: 'Enviar',
       subscribeSending: 'Enviado...',
@@ -53,7 +62,8 @@
         title: 'Cultura Balderrama',
         heroTitle: 'BALDERRAMA',
         aboutTitle: 'Nosotros',
-        aboutText: 'La cultura es política. Bajo esta idea (tan simple como compleja y desafiante) armamos este espacio que busca generar encuentros en los que se debata y se propague el arte y nuestra cultura nacional. Creemos en la discusión política dentro del campo artístico para defender el rol de la cultura como elemento de transformación y de constitución de nuestra identidad.'
+        // Los spans .highlight son las frases que van en amarillo.
+        aboutText: 'La <span class="highlight">cultura es política</span>. Bajo esta idea (tan simple como compleja y desafiante) armamos este espacio que busca generar <span class="highlight">encuentros en los que se debata y se propague el arte y nuestra cultura nacional</span>. Creemos en la discusión política dentro del campo artístico para defender el rol de la cultura como elemento de transformación y de constitución de nuestra identidad.'
       },
 
       nosotros: {
@@ -64,10 +74,10 @@
             num: '01',
             heading: 'Nosotros',
             content: [
-              'La cultura es política. Bajo esta idea, tan simple como compleja y desafiante, armamos Balderrama: un espacio pensado para generar encuentros en los que se debata y se propague el arte y nuestra cultura nacional.',
+              'La <span class="highlight">cultura es política</span>. Bajo esta idea, tan simple como compleja y desafiante, armamos Balderrama: un espacio pensado para generar <span class="highlight">encuentros en los que se debata y se propague el arte y nuestra cultura nacional</span>.',
               'Creemos en la discusión política dentro del campo artístico para defender el rol de la cultura como elemento de transformación y de constitución de nuestra identidad.',
               'Por eso, armamos encuentros donde invitamos a diferentes artistas a conversar sobre el escenario cultural de nuestro país. Además, abrimos el espacio a proyecciones y música en vivo, para seguir difundiendo y conservando nuestro arte nacional.',
-              'Balderrama nace para que discutamos. Creemos que es importante entender de dónde venimos para pensar hacia dónde vamos.'
+              '<span class="highlight">Balderrama nace para que discutamos. Creemos que es importante entender de dónde venimos para pensar hacia dónde vamos</span>.'
             ]
           },
           {
@@ -89,6 +99,8 @@
         labels: {
           email: 'Email',
           instagram: 'Instagram',
+          youtube: 'YouTube',
+          tiktok: 'TikTok',
           location: 'Ubicación'
         }
       },
@@ -165,6 +177,19 @@
           { title: 'Remera — Logo celeste' },
           { title: 'Buzo — Logo largo' },
           { title: 'Tote — Logo largo' }
+        ],
+        // Las secciones son las que lee merch.html. Cada bloque es una
+        // slide con su texto a la izquierda y la galeria a la derecha.
+        sections: [
+          {
+            kicker: 'Merch / Remeras',
+            meta: 'Colección 2026',
+            title: 'Remeras Balderrama',
+            content: [
+              'Remeras con el logo de Balderrama en distintas variantes: logo negro, logo celeste y logo largo en negro o en celeste.',
+              '<em>Próximamente vas a poder comprarlas acá.</em>'
+            ]
+          }
         ]
       }
     }
