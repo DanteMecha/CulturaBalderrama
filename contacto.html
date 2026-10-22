@@ -48,10 +48,10 @@
     display: flex;
     gap: 28px;
     padding: 40px 0;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgb(255, 255, 255);
   }
   .contact-row:last-child{
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgb(255, 255, 255);
   }
   .contact-row .label{
     flex: 0 0 150px;
@@ -77,6 +77,29 @@
     color: var(--white);
     transform: translateX(10px);
   }
+
+  /* Nombre de la app por defecto; al hacer hover se revela la cuenta. */
+  a.value.value-swap{
+    display: inline-grid;
+  }
+  .value-swap .value-default,
+  .value-swap .value-hover{
+    grid-area: 1 / 1;
+    transition: opacity 0.25s ease;
+  }
+  .value-swap .value-hover{
+    color: var(--celeste);
+    opacity: 0;
+    pointer-events: none;
+    overflow-wrap: anywhere;
+  }
+  .value-swap:focus-visible .value-default{
+    opacity: 0;
+  }
+  .value-swap:focus-visible .value-hover{
+    opacity: 1;
+  }
+
   /* El hover solo con cursor real: en touch queda pegado tras el tap. */
   @media (hover: hover) and (pointer: fine){
     a.value:hover,
@@ -84,22 +107,47 @@
       color: var(--white);
       transform: translateX(10px);
     }
+    .value-swap:hover .value-default{
+      opacity: 0;
+    }
+    .value-swap:hover .value-hover{
+      opacity: 1;
+    }
   }
-  @media (hover: none){
+   @media (hover: none){
+    .contact-row .value,
+    .contact-row .value .value-default,
+    .contact-row .value .value-hover,
     a.value:active,
     .contact-row .value.is-static:active{
-      color: var(--white);
-      transform: translateX(10px);
+      color: #ffffff !important;
+    }
+    .value-swap:active .value-default{
+      opacity: 0;
+    }
+    .value-swap:active .value-hover{
+      opacity: 1;
+    }
+    .value-swap.is-email .value-default{
+      opacity: 0;
+    }
+    .value-swap.is-email .value-hover{
+      opacity: 1;
     }
   }
 
-  @media (max-width: 700px){
-    .page-head{ padding: 0 20px 20px; }
-    .contact{ padding: 0 20px 60px; }
+   @media (max-width: 700px){
+    html, body{ height: 100%; }
+    body{ min-height: 100svh; display: flex; flex-direction: column; }
+    site-header, site-menu{ flex: 0 0 auto; }
+    main{ flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; padding-top: calc(var(--header-h, 140px) + 8px); }
+    .page-head{ padding: 0 20px 48px; }
+    .contact{ flex: 0 0 auto; padding: 0 20px 24px; display: flex; flex-direction: column; }
+    .contact-row:first-child{ padding-top: 28px; }
     .contact-row{ flex-direction: column; gap: 12px; padding: 28px 0; }
-    /* En columna el flex-basis pasa a ser alto: sin esto el label se estira a 150px. */
     .contact-row .label{ flex: 0 0 auto; padding-top: 0; }
     .contact-row .value{ font-size: clamp(1.5rem, 6.5vw, 1.9rem); }
+    site-footer{ flex: 1 0 auto; display: flex; flex-direction: column; justify-content: flex-end; margin-top: 0; }
   }
 
   /* Tablet */
@@ -121,20 +169,28 @@
   </section>
   <section class="contact">
     <article class="contact-row">
-      <div class="label" data-text="pages.contacto.labels.email"></div>
-      <a class="value" href="mailto:" data-text="shared.email" data-href="shared.mailtoEmail"></a>
+      <a class="value value-swap is-email" href="mailto:" data-href="shared.mailtoEmail">
+        <span class="value-default" data-text="pages.contacto.labels.email"></span>
+        <span class="value-hover" data-text="shared.email"></span>
+      </a>
     </article>
     <article class="contact-row">
-      <div class="label" data-text="pages.contacto.labels.instagram"></div>
-      <a class="value" href="#" data-text="shared.instagramHandle" data-href="shared.instagramUrl" target="_blank" rel="noopener"></a>
+      <a class="value value-swap" href="#" data-href="shared.instagramUrl" target="_blank" rel="noopener">
+        <span class="value-default" data-text="pages.contacto.labels.instagram"></span>
+        <span class="value-hover" data-text="shared.instagramHandle"></span>
+      </a>
     </article>
     <article class="contact-row">
-      <div class="label" data-text="pages.contacto.labels.youtube"></div>
-      <a class="value" href="#" data-text="shared.youtubeHandle" data-href="shared.youtubeUrl" target="_blank" rel="noopener"></a>
+      <a class="value value-swap" href="#" data-href="shared.youtubeUrl" target="_blank" rel="noopener">
+        <span class="value-default" data-text="pages.contacto.labels.youtube"></span>
+        <span class="value-hover" data-text="shared.youtubeHandle"></span>
+      </a>
     </article>
     <article class="contact-row">
-      <div class="label" data-text="pages.contacto.labels.tiktok"></div>
-      <a class="value" href="#" data-text="shared.tiktokHandle" data-href="shared.tiktokUrl" target="_blank" rel="noopener"></a>
+      <a class="value value-swap" href="#" data-href="shared.tiktokUrl" target="_blank" rel="noopener">
+        <span class="value-default" data-text="pages.contacto.labels.tiktok"></span>
+        <span class="value-hover" data-text="shared.tiktokHandle"></span>
+      </a>
     </article>
     <article class="contact-row">
       <div class="label" data-text="pages.contacto.labels.location"></div>
